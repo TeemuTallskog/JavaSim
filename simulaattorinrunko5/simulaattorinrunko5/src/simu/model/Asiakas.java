@@ -12,6 +12,7 @@ public class Asiakas {
 	private int id;
 	private static int i = 1;
 	private static long sum = 0;
+	private int ostoskori;
 	
 	public Asiakas(){
 	    id = i++;
@@ -48,6 +49,14 @@ public class Asiakas {
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
+	}
+	
+	public int getOstoskori() {
+		return this.ostoskori;
+	}
+	
+	public void lisaaOstos(int amount) {
+		this.ostoskori += amount;
 	}
 
 }

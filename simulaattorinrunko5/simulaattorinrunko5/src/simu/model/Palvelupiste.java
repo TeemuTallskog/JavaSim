@@ -17,17 +17,18 @@ public class Palvelupiste {
 	private ContinuousGenerator generator;
 	private Tapahtumalista tapahtumalista;
 	private TapahtumanTyyppi skeduloitavanTapahtumanTyyppi; 
+	private PalveluTyyppi palvelupisteenTyyppi;
 	
 	//JonoStartegia strategia; //optio: asiakkaiden järjestys
 	
 	private boolean varattu = false;
 
 
-	public Palvelupiste(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi){
+	public Palvelupiste(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi, PalveluTyyppi palv){
 		this.tapahtumalista = tapahtumalista;
 		this.generator = generator;
 		this.skeduloitavanTapahtumanTyyppi = tyyppi;
-				
+		this.palvelupisteenTyyppi = palv;
 	}
 
 
@@ -42,9 +43,23 @@ public class Palvelupiste {
 	}
 
 	public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
-		
 		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
-		
+		switch(palvelupisteenTyyppi) {
+		case REGISTER:
+			break;
+			
+		case SELFSERVICE:
+			break;
+			
+		case MEAT:
+			break;
+			
+		case SHOP:
+			break;
+			
+		case COFFEE:
+			break;
+		}
 		varattu = true;
 		double palveluaika = generator.sample();
 		tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
