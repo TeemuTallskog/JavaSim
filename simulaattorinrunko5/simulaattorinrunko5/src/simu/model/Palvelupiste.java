@@ -1,6 +1,7 @@
 package simu.model;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import eduni.distributions.ContinuousGenerator;
 import simu.framework.Kello;
@@ -43,25 +44,33 @@ public class Palvelupiste {
 	}
 
 	public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
+		Random rand = new Random();
+		double palveluaika = generator.sample();
 		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
 		switch(palvelupisteenTyyppi) {
 		case REGISTER:
+			System.out.println("Asiakas saapui kassalle ostoskori: " + jono.peek().getOstoskori());
+			
+			palveluaika = jono.peek().getOstoskori() * 2;
 			break;
 			
 		case SELFSERVICE:
+			System.out.println("Asiakas saapui itsepalvelukassalle ostoskori: " + jono.peek().getOstoskori());
+			palveluaika = jono.peek().getOstoskori() * 5;
 			break;
 			
 		case MEAT:
 			break;
 			
 		case SHOP:
+			System.out.println("Asiakas valitsee ostoksia.");
+			jono.peek().lisaaOstos(rand.nextInt(30) + 2);
 			break;
 			
 		case COFFEE:
 			break;
 		}
 		varattu = true;
-		double palveluaika = generator.sample();
 		tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
 	}
 

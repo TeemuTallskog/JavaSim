@@ -46,6 +46,7 @@ public class Asiakas {
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
+		Trace.out(Trace.Level.INFO, "Asiakas " + id + " osti " + this.ostoskori + " tuotetta"); 
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
