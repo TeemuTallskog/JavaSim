@@ -1,5 +1,7 @@
 package simu.model;
 
+import java.util.Random;
+
 import simu.framework.Kello;
 import simu.framework.Trace;
 
@@ -13,12 +15,29 @@ public class Asiakas {
 	private static int i = 1;
 	private static long sum = 0;
 	private int ostoskori;
+	private boolean kahvi = false; //meneekö kahvilaan
+	
+
+	private boolean liha = false; //meneekö lihatiskille
 	
 	public Asiakas(){
 	    id = i++;
 	    
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+		int i = new Random().nextInt(400); //antaa arvon 0-399
+		if(i<100) {
+			if(i<25) { //25% menee kahvilaan ja lihatiskille
+				this.kahvi = true;
+				this.liha = true;
+			}else if(i<63) { //38% menee vain kahvilaan
+				this.kahvi = true;
+			}else if(i < 100) { //37% menee vain lihatiskille
+				this.liha = true;
+			}
+		}
+		
+		
 	}
 
 	public double getPoistumisaika() {
@@ -58,6 +77,18 @@ public class Asiakas {
 	
 	public void lisaaOstos(int amount) {
 		this.ostoskori += amount;
+	}
+	
+	public boolean isKahvi() {
+		return kahvi;
+	}
+
+	public void setKahvi(boolean kahvi) {
+		this.kahvi = kahvi;
+	}
+
+	public boolean isLiha() {
+		return liha;
 	}
 
 }

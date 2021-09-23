@@ -5,5 +5,6 @@ public enum PalveluTyyppi {
 	REGISTER,
 	SHOP,
 	COFFEE,
+	COFFEE_TABLE,
 	MEAT
 }
