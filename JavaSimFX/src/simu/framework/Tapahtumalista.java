@@ -23,5 +23,10 @@ public class Tapahtumalista {
 		return lista.peek().getAika();
 	}
 	
+	public Tapahtuma[] getEvents() {
+		Tapahtuma[] arr = lista.toArray(new Tapahtuma[lista.size()]);
+		return arr;
+	}
+	
 	
 }
