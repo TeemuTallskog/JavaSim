@@ -1,8 +1,9 @@
 package simu.model;
 
-import controller.IKontrolleri;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
+import javafx.application.Platform;
+import simu.controller.IKontrolleri;
 import simu.framework.Kello;
 import simu.framework.Moottori;
 import simu.framework.Saapumisprosessi;
@@ -144,8 +145,9 @@ public class OmaMoottori extends Moottori {
 		return ipKassaAsiakas;
 	}
 	
-
-
+	public Palvelupiste[] getPalvPisteet() {
+		return this.palvelupisteet;
+	}
 	
 	@Override
 	protected void tulokset() {

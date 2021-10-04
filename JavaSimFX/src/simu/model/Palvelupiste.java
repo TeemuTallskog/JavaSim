@@ -132,5 +132,9 @@ public class Palvelupiste {
 	public boolean onJonossa(){
 		return jono.size() != 0;
 	}
+	
+	public PalveluTyyppi getTyyppi() {
+		return this.palvelupisteenTyyppi;
+	}
 
 }
