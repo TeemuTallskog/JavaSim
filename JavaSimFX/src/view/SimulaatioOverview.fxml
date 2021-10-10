@@ -8,16 +8,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="600.0" minWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<AnchorPane minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ChoiceBox fx:id="jakaumaCh" layoutX="58.0" layoutY="184.0" prefWidth="150.0" />
-                  <Label layoutX="113.0" layoutY="52.0" text="Ajoaika" />
-                  <TextField fx:id="Ajoaika" layoutX="58.0" layoutY="82.0" />
+                  <ChoiceBox fx:id="jakaumaCh" layoutX="59.0" layoutY="228.0" prefWidth="150.0" />
+                  <Label layoutX="113.0" layoutY="24.0" text="Ajoaika" />
+                  <TextField fx:id="Ajoaika" layoutX="59.0" layoutY="53.0" />
                   <Button fx:id="KaynnistaBTN" layoutX="99.0" layoutY="274.0" mnemonicParsing="false" text="Käynnistä" />
                   <Label layoutX="119.0" layoutY="520.0" text="Viive" />
                   <ChoiceBox fx:id="ViiveCH" layoutX="58.0" layoutY="550.0" prefWidth="150.0" />
@@ -25,6 +24,11 @@
                   <ListView fx:id="KeskPalveluaika" layoutX="54.0" layoutY="367.0" prefHeight="39.0" prefWidth="150.0" />
                   <Label layoutX="61.0" layoutY="424.0" text="Keskimääräinen läpimeno" />
                   <ListView fx:id="KeskLapimeno" layoutX="57.0" layoutY="454.0" prefHeight="39.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="kassaLKM" layoutX="58.0" layoutY="170.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="itsepalvelukasssaLKM" layoutX="59.0" layoutY="114.0" prefWidth="150.0" />
+                  <Label layoutX="60.0" layoutY="89.0" text="Itsepalvelukassojen määrä" />
+                  <Label layoutX="88.0" layoutY="147.0" text="Kassojen määrä" />
+                  <Label layoutX="95.0" layoutY="204.0" text="Distributions" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
