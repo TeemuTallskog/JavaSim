@@ -6,9 +6,18 @@ public class Tulos {
 	private double ajoAika;
 	private double keskPalvAika;
 	private double keskLapimenoAika;
+	private int id;
 
 	public Tulos() {
 
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getAsiakasCount() {
