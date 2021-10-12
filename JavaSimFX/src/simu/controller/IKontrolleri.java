@@ -1,6 +1,7 @@
 package simu.controller;
 
 import simu.model.Palvelupiste;
+import simu.view.ISimulaattorinUI;
 
 public interface IKontrolleri {
 	

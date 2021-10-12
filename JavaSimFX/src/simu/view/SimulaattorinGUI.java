@@ -224,5 +224,17 @@ public class SimulaattorinGUI extends Application implements ISimulaattorinUI{
 		
 	}
 
+	@Override
+	public void setDistribution(String distribution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ISimulaattorinUI getReference() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

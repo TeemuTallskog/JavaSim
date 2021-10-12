@@ -13,6 +13,7 @@ public interface ISimulaattorinUI {
 	
 	// Kontrolleri tarvitsee  
 	public IVisualisointi getVisualisointi();
+	public ISimulaattorinUI getReference();
 	
 	public void setKahvilaJono(Asiakas[] list);
 	public void setKahvila(Asiakas[] list);
@@ -23,5 +24,6 @@ public interface ISimulaattorinUI {
 	public void setIpKassaJono(Asiakas[] list);
 	public void setKassa(Asiakas[] list);
 	public void setKassaJono(Asiakas[] list);
+	public void setDistribution(String distribution);
 
 }

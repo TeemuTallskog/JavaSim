@@ -1,3 +1,4 @@
+package simu;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -7,11 +8,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import simu.view.DatabaseGUIController;
+import simu.view.ISimulaattorinUI;
+import simu.view.RootLayoutController;
 
-public class Main extends Application{ // Simulaattorin käynnistyspääohjelma
+public class MainApp extends Application{ // Simulaattorin käynnistyspääohjelma
 	
 	private Stage primaryStage;
 	private BorderPane root;
+	private ISimulaattorinUI ui;
 	
 	public static void main(String args[]) {
 		launch(args);	
@@ -29,10 +34,11 @@ public class Main extends Application{ // Simulaattorin käynnistyspääohjelma
 	
 	public void initOverview() {
 		try {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("simu/view/SimulaatioOverview.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/SimulaatioOverview.fxml"));
 			AnchorPane simuOverview = (AnchorPane) loader.load();
 			root.setCenter(simuOverview);
+			ui = loader.getController();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("overview");
@@ -43,11 +49,13 @@ public class Main extends Application{ // Simulaattorin käynnistyspääohjelma
 	private void initRoot() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("simu/view/RootLayout.fxml"));
+			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
 			root = (BorderPane) loader.load();
 			Scene scene = new Scene(root);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
+	        RootLayoutController controller = loader.getController();
+	        controller.setMainApp(this);
 	            
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -59,10 +67,12 @@ public class Main extends Application{ // Simulaattorin käynnistyspääohjelma
 	public void openDatabaseView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			Pane root = loader.load(getClass().getResource("DatabaseView.fxml").openStream());
+			Pane root = loader.load(getClass().getResource("view/DatabaseView.fxml").openStream());
 			Stage stage = new Stage();
 	        stage.setScene(new Scene(root));
 	        stage.showAndWait();
+	        DatabaseGUIController controller = loader.getController();
+	        controller.setUI(ui);
 		} catch (IOException e) {
 			System.out.println("DatabaseView couldn't be opened");
 			e.printStackTrace();

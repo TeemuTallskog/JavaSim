@@ -36,6 +36,8 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private ChoiceBox<Integer> viiveCH;
 	@FXML
+	private ChoiceBox<String> distributionBox;
+	@FXML
 	private Button startBtn;
 	
 	public SimulaatioOverviewController() {
@@ -49,6 +51,7 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		viiveCH.getItems().add(100);
 		viiveCH.getItems().add(500);
 		viiveCH.getItems().add(1000);
+		distributionBox.getItems().add("Normal");
 	}
 
 	@Override
@@ -160,5 +163,15 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		for(Asiakas a: list) {
 			kassaJono.getItems().add("Asiakas " + a.getId());
 		}
+	}
+
+	@Override
+	public void setDistribution(String distribution) {
+		distributionBox.setValue(distribution);
+	}
+
+	@Override
+	public ISimulaattorinUI getReference() {
+		return this;
 	}	
 }

@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simu.view.DatabaseGUIController">
    <children>
-      <TableView layoutX="65.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="table" layoutX="65.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="75.0" text="Distribution" />
-            <TableColumn prefWidth="75.0" text="Run time" />
-            <TableColumn prefWidth="75.0" text="Customers served" />
-            <TableColumn prefWidth="75.0" text="Arvg. passtrough" />
-            <TableColumn prefWidth="75.0" text="Avrg. service time" />
+          <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="distribution" prefWidth="75.0" text="Distribution" />
+            <TableColumn fx:id="runTime" prefWidth="75.0" text="Run time" />
+            <TableColumn fx:id="customersServed" prefWidth="75.0" text="Customers served" />
+            <TableColumn fx:id="avrgPasstrough" prefWidth="75.0" text="Arvg. passtrough" />
+            <TableColumn fx:id="avrgServiceTime" prefWidth="75.0" text="Avrg. service time" />
         </columns>
       </TableView>
-      <Button layoutX="481.0" layoutY="361.0" mnemonicParsing="false" text="Use distribution" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <ChoiceBox layoutX="415.0" layoutY="361.0" prefHeight="25.0" prefWidth="54.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="131.0" />
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Return" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="useDistributionBtn" layoutX="481.0" layoutY="361.0" mnemonicParsing="false" text="Use distribution" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <Button fx:id="returnBtn" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Return" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
    </children>
 </AnchorPane>
