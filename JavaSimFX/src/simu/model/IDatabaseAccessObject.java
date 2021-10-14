@@ -7,4 +7,6 @@ public interface IDatabaseAccessObject {
 	public Tulos haeTulos(int id);
 	
 	public void vieTulos(Tulos tulos);
+	
+	public int getHighID();
 }

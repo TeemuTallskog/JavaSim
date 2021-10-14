@@ -2,6 +2,7 @@ package simu.framework;
 
 import javafx.application.Platform;
 import simu.controller.IKontrolleri;
+import simu.model.Asiakas;
 import simu.model.Palvelupiste;
 
 public abstract class Moottori extends Thread implements IMoottori {
@@ -58,6 +59,7 @@ public abstract class Moottori extends Thread implements IMoottori {
 				@Override
 				public void run() {
 					kontrolleri.updateView(palvelupisteet);
+					kontrolleri.updateResults(resultSet());
 				}
 			});
 			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
@@ -69,23 +71,6 @@ public abstract class Moottori extends Thread implements IMoottori {
 	
 	
 	
-	/*public void aja(){
-		alustukset(); // luodaan mm. ensimmäinen tapahtuma
-		while (simuloidaan()){
-			
-			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
-			kello.setAika(nykyaika());
-			
-			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
-			suoritaBTapahtumat();
-			
-			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
-			yritaCTapahtumat();
-
-		}
-		tulokset();
-		
-	}*/
 	
 	private void suoritaBTapahtumat(){
 		while (tapahtumalista.getSeuraavanAika() == kello.getAika()){
@@ -120,6 +105,13 @@ public abstract class Moottori extends Thread implements IMoottori {
 	}
 			
 
+	@Override
+	public double getSimulointiAika() {
+		return this.simulointiaika;
+	}
+	
+	protected abstract double[] resultSet();
+	
 	protected abstract void alustukset(); // Määritellään simu.model-pakkauksessa Moottorin aliluokassa
 	
 	protected abstract void suoritaTapahtuma(Tapahtuma t);  // Määritellään simu.model-pakkauksessa Moottorin aliluokassa

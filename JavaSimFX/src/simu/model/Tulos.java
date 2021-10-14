@@ -40,7 +40,7 @@ public class Tulos {
 		return ajoAika;
 	}
 
-	public void setAjoAika(long ajoAika) {
+	public void setAjoAika(double ajoAika) {
 		this.ajoAika = ajoAika;
 	}
 

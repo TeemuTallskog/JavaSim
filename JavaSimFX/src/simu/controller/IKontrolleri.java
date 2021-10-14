@@ -16,5 +16,6 @@ public interface IKontrolleri {
 		public void naytaLoppuaika(double aika);
 		public void visualisoiAsiakas();
 		public void updateView(Palvelupiste[] pp);
+		public void updateResults(double[] results);
 
 }

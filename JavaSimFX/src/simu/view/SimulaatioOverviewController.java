@@ -32,6 +32,10 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private ListView<String> ipJono;
 	@FXML
+	private ListView<String> keskPalveluAika;
+	@FXML
+	private ListView<String> keskLapimeno;
+	@FXML
 	private TextField ajoAika;
 	@FXML
 	private ChoiceBox<Integer> viiveCH;
@@ -173,5 +177,17 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@Override
 	public ISimulaattorinUI getReference() {
 		return this;
+	}
+
+	@Override
+	public void setKeskLapiMeno(double time) {
+		keskLapimeno.getItems().clear();
+		keskLapimeno.getItems().add(String.format("%.2f", time));
+	}
+
+	@Override
+	public void setKeskPalvAika(double time) {
+		keskPalveluAika.getItems().clear();
+		keskPalveluAika.getItems().add(String.format("%.2f", time)); 	
 	}	
 }

@@ -102,20 +102,20 @@ public class OmaMoottori extends Moottori {
 			a = palvelupisteet[3].otaJonosta();
 			if (a.getOstoskori() < 8) {
 				palvelupisteet[5].lisaaJonoon(a);
-				ipKassaAsiakas++;
 			} else {
 				palvelupisteet[4].lisaaJonoon(a);
-				kassaAsiakas++;
 			}
 			break;
 		case DEP5:
 			a = palvelupisteet[4].otaJonosta();
 			a.setPoistumisaika(Kello.getInstance().getAika());
+			kassaAsiakas++;
 			a.raportti();
 			break;
 		case DEP6:
 			a = palvelupisteet[5].otaJonosta();
 			a.setPoistumisaika(Kello.getInstance().getAika());
+			ipKassaAsiakas++;
 			a.raportti();
 			break;
 		}
@@ -145,6 +145,10 @@ public class OmaMoottori extends Moottori {
 		return ipKassaAsiakas;
 	}
 	
+	public int getCompletedCustomers() {
+		return ipKassaAsiakas + kassaAsiakas;
+	}
+	
 	public Palvelupiste[] getPalvPisteet() {
 		return this.palvelupisteet;
 	}
@@ -159,6 +163,22 @@ public class OmaMoottori extends Moottori {
 		System.out.println("Asiakkaat, jotka ostivat kahvin: " + getKahvilaAsiakas());
 		System.out.println("\nItsepalvelukassan läpi kulki " + getIpKassaAsiakas() + " asiakasta.");
 		System.out.println("Normaalin kassan läpi kulki " + getKassaAsiakas() + " asiakasta.");
+		Tulos tulos = new Tulos();
+		tulos.setAjoAika(this.getSimulointiAika());
+		tulos.setAsiakasCount(this.getCompletedCustomers());
+		tulos.setKeskLapimenoAika(Asiakas.getTimeSum() / this.getCompletedCustomers());
+		//IDatabaseAccessObject dbao = null;
+		//tulos.setId(dbao.getHighID() + 1);
+		tulos.setKeskPalvAika(palvelupisteet[1].getAvrgPalvAika());
+		//dbao.vieTulos(tulos);
+	}
+	
+	@Override
+	protected double[] resultSet() {
+		double[] results = new double[2];
+		results[0] = palvelupisteet[1].getAvrgPalvAika();
+		results[1] = Asiakas.getTimeSum() / this.getCompletedCustomers();
+		return results;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Asiakas {
 	private double poistumisaika;
 	private int id;
 	private static int i = 1;
-	private static long sum = 0;
+	private static double sum = 0.0;
 	private int ostoskori;
 	private boolean kahvi = false; //meneekö kahvilaan
 	
@@ -39,6 +39,10 @@ public class Asiakas {
 		
 		
 	}
+	
+	public static double getTimeSum() {
+		return sum;
+	}
 
 	public double getPoistumisaika() {
 		return poistumisaika;
@@ -59,6 +63,7 @@ public class Asiakas {
 	public int getId() {
 		return id;
 	}
+	
 	
 	public void raportti(){
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");

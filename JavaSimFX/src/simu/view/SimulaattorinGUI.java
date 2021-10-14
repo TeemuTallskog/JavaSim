@@ -236,5 +236,17 @@ public class SimulaattorinGUI extends Application implements ISimulaattorinUI{
 		return null;
 	}
 
+	@Override
+	public void setKeskLapiMeno(double time) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKeskPalvAika(double time) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

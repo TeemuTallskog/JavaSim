@@ -25,5 +25,7 @@ public interface ISimulaattorinUI {
 	public void setKassa(Asiakas[] list);
 	public void setKassaJono(Asiakas[] list);
 	public void setDistribution(String distribution);
+	public void setKeskLapiMeno(double time);
+	public void setKeskPalvAika(double time);
 
 }

@@ -85,4 +85,10 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 
 	}
 
+	@Override
+	public void updateResults(double[] results) {
+		ui.setKeskLapiMeno(results[1]);
+		ui.setKeskPalvAika(results[0]);
+	}
+
 }

@@ -15,6 +15,8 @@ public class Palvelupiste {
 
 	private LinkedList<Asiakas> jono = new LinkedList<Asiakas>();//
 	private LinkedList<Asiakas> jonotonPalvelupiste = new LinkedList<Asiakas>();//Asiakkaat jonottomassa palvelupisteessä lisätään tänne.
+	private static int customerCount = 0;
+	private static double serviceLenght = 0;
 	
 	private ContinuousGenerator generator;
 	private Tapahtumalista tapahtumalista;
@@ -92,6 +94,8 @@ public class Palvelupiste {
 			break;
 		}
 		tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
+		customerCount++;
+		serviceLenght += palveluaika;	
 	}
 
 	
@@ -135,6 +139,10 @@ public class Palvelupiste {
 	
 	public PalveluTyyppi getTyyppi() {
 		return this.palvelupisteenTyyppi;
+	}
+	
+	public double getAvrgPalvAika() {
+		return serviceLenght / customerCount;
 	}
 
 }
