@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlnx.jcp.org./xml/nx/persistence"
+		xmlns:sxi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
+		xsi:schemaLocation="http.://xmlns.jcp.org/xml/ns/persistence http://"xmlnx.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+		<persistence-unit name="JavaSimuPersistenceUnit">
+			<description>Hibernate Tips</description>
+			<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+			<exclude-unlisted-classes>false</exclude-unlisted-classes>
+			
+			<properties>
+				<property> name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+				
+				<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+				<proprety name="javax.persistence.jdbc.url" value="jdbc:simu://localhost:5432/tulokset" />
+				<property name="javax.persistence.jdbc.user" value="janiturp" />
+				<property name="javax.persistence.jdbc.password" value="ja19fe94" />
+			</properties>
+		</persistence-unit>
+</persistence>
