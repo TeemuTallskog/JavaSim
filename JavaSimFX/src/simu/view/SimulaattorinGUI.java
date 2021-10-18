@@ -1,8 +1,8 @@
-package view;
+package simu.view;
 
 
 import java.text.DecimalFormat;
-import controller.*;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -11,8 +11,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import simu.controller.*;
 import simu.framework.Trace;
 import simu.framework.Trace.Level;
+import simu.model.Asiakas;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
@@ -166,6 +168,84 @@ public class SimulaattorinGUI extends Application implements ISimulaattorinUI{
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public ISimulaattorinUI getReference() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setKahvilaJono(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKahvila(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setHyllyt(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLihaTiski(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLihaJono(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIpKassa(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIpKassaJono(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKassa(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKassaJono(Asiakas[] list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDistribution(String distribution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKeskLapiMeno(double time) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setKeskPalvAika(double time) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -10,7 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.Tulos;
+import simu.model.Tulos;
 
 public class AlustaLuokat {
 	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
@@ -19,7 +19,7 @@ public class AlustaLuokat {
 	private ArrayList<Tulos> tulosLista = new ArrayList<>();
 	
 	//Konstruktori luo yhteyden tietokantaan ja luo listan tuloksista.
-	//Jos yhteys epäonnistuu niin printtaa virhekoodit.
+	//Jos yhteys epï¿½onnistuu niin printtaa virhekoodit.
 	public AlustaLuokat () {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		String query = "SELECT c FROM tulokset WHERE c.id IS NOT NULL";
@@ -28,9 +28,9 @@ public class AlustaLuokat {
 		List<simu.model.Tulos> tulokset;
 		
 		
-		//Jos yhteys onnistuu niin tuloslista täytetään tietokannasta
-		//saaduista tiedoista. Vielä ei ole logiikkaa tulosten 
-		//Lisäämiselle tietokantaan.
+		//Jos yhteys onnistuu niin tuloslista tï¿½ytetï¿½ï¿½n tietokannasta
+		//saaduista tiedoista. Vielï¿½ ei ole logiikkaa tulosten 
+		//Lisï¿½ï¿½miselle tietokantaan.
 		try {
 			tulokset = tq.getResultList();
 			tulokset.forEach(tulos -> tulosLista.add(new Tulos(tulos.getAjoAika(), tulos.getAsiakasCount(), tulos.getDistribution(), tulos.getId(), tulos.getKeskLapimenoAika(), tulos.getKeskPalvAika())));
