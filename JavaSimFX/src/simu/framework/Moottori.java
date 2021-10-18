@@ -1,6 +1,7 @@
 package simu.framework;
 
-import controller.IKontrolleri;
+import javafx.application.Platform;
+import simu.controller.IKontrolleri;
 import simu.model.Palvelupiste;
 
 public abstract class Moottori extends Thread implements IMoottori {
@@ -53,12 +54,19 @@ public abstract class Moottori extends Thread implements IMoottori {
 			kello.setAika(nykyaika());
 			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
 			suoritaBTapahtumat();
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					kontrolleri.updateView(palvelupisteet);
+				}
+			});
 			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
 			yritaCTapahtumat();
 		}
 		tulokset();
 		
 	}
+	
 	
 	
 	/*public void aja(){

@@ -98,10 +98,43 @@ public class Palvelupiste {
 	public boolean onVarattu(){
 		return varattu;
 	}
+	
+	/*
+	 * returns an array of cutsomers who are in que for a service point. If no one is in que it returns an empty array.
+	 */
+	public Asiakas[] getJono(){
+		if(this.palvelupisteenTyyppi == PalveluTyyppi.SHOP || this.palvelupisteenTyyppi == PalveluTyyppi.COFFEE_TABLE) {
+			Asiakas[] arr = this.jono.toArray(new Asiakas[this.jono.size()]);
+			return arr;
+		}else if(this.jono.size() > 1) {
+			Asiakas[] arr = new Asiakas[this.jono.size() - 1];
+			for(int i = 1; i < this.jono.size(); i++) {
+				arr[i - 1] = this.jono.get(i);
+			}
+			return arr;
+		}else return new Asiakas[0];
+	}
+	
+	/*
+	 * returns an array of customers who are being serviced. If no one is being serviced it returns an empty array.
+	 */
+	public Asiakas[] getPalvellaan(){
+		if(this.palvelupisteenTyyppi == PalveluTyyppi.SHOP || this.palvelupisteenTyyppi == PalveluTyyppi.COFFEE_TABLE) {
+			return this.jonotonPalvelupiste.toArray(new Asiakas[this.jonotonPalvelupiste.size()]);
+		}else if(this.jono.size() > 0) {
+			Asiakas[] arr = new Asiakas[1];
+			arr[0] = this.jono.peek();
+			return arr;
+		}else return new Asiakas[0];
+	}
 
 
 	public boolean onJonossa(){
 		return jono.size() != 0;
+	}
+	
+	public PalveluTyyppi getTyyppi() {
+		return this.palvelupisteenTyyppi;
 	}
 
 }
