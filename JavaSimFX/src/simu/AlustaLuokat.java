@@ -1,3 +1,5 @@
+package simu;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class AlustaLuokat {
 		//Lisäämiselle tietokantaan.
 		try {
 			tulokset = tq.getResultList();
-			tulokset.forEach(tulos -> tuloksLista.add(new Tulos(tulos.getAjoAika(), tulos.getAsiakasCount(), tulos.getDistribution(), tulos.getId(), tulos.getKeskLapimenoAika(), tulos.getKeskPalvAika())));
+			tulokset.forEach(tulos -> tulosLista.add(new Tulos(tulos.getAjoAika(), tulos.getAsiakasCount(), tulos.getDistribution(), tulos.getId(), tulos.getKeskLapimenoAika(), tulos.getKeskPalvAika())));
 			
 		}
 		
