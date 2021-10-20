@@ -11,7 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.Tulos;
+import simu.model.Tulos;
 
 public class AlustaLuokat {
 	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
@@ -34,7 +34,7 @@ public class AlustaLuokat {
 		//Lisäämiselle tietokantaan.
 		try {
 			tulokset = tq.getResultList();
-			tulokset.forEach(tulos -> tulosLista.add(new Tulos(tulos.getAjoAika(), tulos.getAsiakasCount(), tulos.getDistribution(), tulos.getId(), tulos.getKeskLapimenoAika(), tulos.getKeskPalvAika())));
+			tulokset.forEach(tulos -> tulosLista.add(new Tulos()));
 			
 		}
 		
@@ -47,5 +47,5 @@ public class AlustaLuokat {
 		}
 	}
 	//Palauttaa tulokset.
-	public ArrayList<Tulos> getTulosLista() {return tulosLista();}
+	public ArrayList<Tulos> getTulosLista() {return tulosLista;}
 }

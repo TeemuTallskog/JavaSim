@@ -1,11 +1,25 @@
 package simu.model;
 
-public class Tulos {
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="tulokset")
+public class Tulos implements Serializable{
+	
+	@Column(name="asiakasCount")
 	private int asiakasCount;
+	@Column(name="distribution")
 	private String distribution;
+	@Column(name="ajoAika")
 	private double ajoAika;
+	@Column(name="keskPalvAika")
 	private double keskPalvAika;
+	@Column(name="keskLapimenoAika")
 	private double keskLapimenoAika;
+	@Id
+	@Column(name="tulosID", unique = true)
 	private int id;
 
 	public Tulos() {
