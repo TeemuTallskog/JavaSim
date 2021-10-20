@@ -12,8 +12,8 @@
 				
 				<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 				<proprety name="javax.persistence.jdbc.url" value="jdbc:simu://localhost:5432/tulokset" />
-				<property name="javax.persistence.jdbc.user" value="janiturp" />
-				<property name="javax.persistence.jdbc.password" value="ja19fe94" />
+				<property name="javax.persistence.jdbc.user" value="OMATUNNUSTÄHÄN" />
+				<property name="javax.persistence.jdbc.password" value="OMASALISTÄHÄN" />
 			</properties>
 		</persistence-unit>
 </persistence>
