@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ChoiceBox fx:id="jakaumaCh" layoutX="59.0" layoutY="228.0" prefWidth="150.0" />
+                  <Label layoutX="113.0" layoutY="24.0" text="Ajoaika" />
+                  <TextField fx:id="Ajoaika" layoutX="59.0" layoutY="53.0" />
+                  <Button fx:id="KaynnistaBTN" layoutX="99.0" layoutY="274.0" mnemonicParsing="false" text="Käynnistä" />
+                  <Label layoutX="119.0" layoutY="520.0" text="Viive" />
+                  <ChoiceBox fx:id="ViiveCH" layoutX="58.0" layoutY="550.0" prefWidth="150.0" />
+                  <Label layoutX="61.0" layoutY="339.0" text="Keskimääräinen palveluaika" />
+                  <ListView fx:id="KeskPalveluaika" layoutX="54.0" layoutY="367.0" prefHeight="39.0" prefWidth="150.0" />
+                  <Label layoutX="61.0" layoutY="424.0" text="Keskimääräinen läpimeno" />
+                  <ListView fx:id="KeskLapimeno" layoutX="57.0" layoutY="454.0" prefHeight="39.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="kassaLKM" layoutX="58.0" layoutY="170.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="itsepalvelukasssaLKM" layoutX="59.0" layoutY="114.0" prefWidth="150.0" />
+                  <Label layoutX="60.0" layoutY="89.0" text="Itsepalvelukassojen määrä" />
+                  <Label layoutX="88.0" layoutY="147.0" text="Kassojen määrä" />
+                  <Label layoutX="95.0" layoutY="204.0" text="Distributions" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="101.0" layoutY="30.0" text="Kahvila" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="30.0" />
+                  <Label layoutX="103.0" layoutY="282.0" text="Kaupan hyllyt" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="282.0" />
+                  <Label layoutX="208.0" layoutY="30.0" text="Lihatiski" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="30.0" />
+                  <Label layoutX="314.0" layoutY="30.0" text="Itsepalvelukassa" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="30.0" />
+                  <Label layoutX="530.0" layoutY="30.0" text="Kassa" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="30.0" />
+                  <ListView fx:id="kahvilaTiski" layoutX="90.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
+                  <Label layoutX="23.0" layoutY="63.0" text="Palvellaan" />
+                  <Label layoutX="29.0" layoutY="118.0" text="Jonossa" />
+                  <ListView fx:id="kahvilaJono" layoutX="90.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
+                  <ListView fx:id="Kauppahyllyt" layoutX="90.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
+                  <ListView fx:id="LihaTiski" layoutX="201.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
+                  <ListView fx:id="LihaJono" layoutX="201.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
+                  <ListView fx:id="IpJono" layoutX="314.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
+                  <ListView fx:id="IpTiski" layoutX="314.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
+                  <ListView fx:id="KassaJono" layoutX="431.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
+                  <ListView fx:id="KassaTiski" layoutX="431.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
+                  <Label layoutX="293.0" layoutY="282.0" text="Asiakkaat järjestelmässä" />
+                  <ListView fx:id="Asiakkaat" layoutX="307.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
+                  <Label layoutX="447.0" layoutY="282.0" text="Valmiit" />
+                  <ListView fx:id="PalvellutAsiakkaat" layoutX="431.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -1,4 +1,6 @@
-package controller;
+package simu.controller;
+
+import simu.model.Palvelupiste;
 
 public interface IKontrolleri {
 	
@@ -12,5 +14,6 @@ public interface IKontrolleri {
 		
 		public void naytaLoppuaika(double aika);
 		public void visualisoiAsiakas();
+		public void updateView(Palvelupiste[] pp);
 
 }
