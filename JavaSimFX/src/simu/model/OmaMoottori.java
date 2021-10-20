@@ -11,6 +11,8 @@ import simu.framework.Tapahtuma;
 
 public class OmaMoottori extends Moottori {
 
+	static IDatabaseAccessObject dao = new DatabaseAccessObject();
+	
 	//Muuttuja-laskureita eri pisteiden kävijöiden määrän mittaamiseen.
 	static int asiakas = 0;
 	//Asiakas[] asiakasLista = new Asiakas[asiakas];
@@ -151,6 +153,7 @@ public class OmaMoottori extends Moottori {
 	
 	@Override
 	protected void tulokset() {
+		dao.haeTulokset();
 		System.out.println("\n// Simulointi päättyi kello " + Kello.getInstance().getAika() + " //");
 		System.out.println("\nTulokset: ");
 		System.out.println("Asiakkaita yhteensä: " + getAsiakas());
