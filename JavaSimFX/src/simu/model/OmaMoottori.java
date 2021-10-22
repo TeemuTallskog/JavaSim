@@ -164,13 +164,13 @@ public class OmaMoottori extends Moottori {
 		System.out.println("\nItsepalvelukassan läpi kulki " + getIpKassaAsiakas() + " asiakasta.");
 		System.out.println("Normaalin kassan läpi kulki " + getKassaAsiakas() + " asiakasta.");
 		Tulos tulos = new Tulos();
+		tulos.setDistribution(getName());
 		tulos.setAjoAika(this.getSimulointiAika());
 		tulos.setAsiakasCount(this.getCompletedCustomers());
 		tulos.setKeskLapimenoAika(Asiakas.getTimeSum() / this.getCompletedCustomers());
-		//IDatabaseAccessObject dbao = null;
-		//tulos.setId(dbao.getHighID() + 1);
+		IDatabaseAccessObject dbao = new DatabaseAccessObject();
 		tulos.setKeskPalvAika(palvelupisteet[1].getAvrgPalvAika());
-		//dbao.vieTulos(tulos);
+		dbao.vieTulos(tulos);
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import simu.model.DatabaseAccessObject;
 import simu.model.IDatabaseAccessObject;
 import simu.model.Tulos;
 
@@ -45,16 +46,9 @@ public class DatabaseGUIController {
 	
 	@FXML
 	private void initialize() {
-		/*IDatabaseAccessObject dbao = null;
-		setItems(dbao.haeTulokset());*/
-		Tulos[] tulosTaulu = new Tulos[2];
-		tulosTaulu[0] = new Tulos();
-		tulosTaulu[1] = new Tulos();
-		tulosTaulu[0].setId(1);
-		tulosTaulu[1].setId(2);
-		tulosTaulu[0].setDistribution("Normal");
-		tulosTaulu[1].setDistribution("Normal");
-		setItems(tulosTaulu);
+		IDatabaseAccessObject dbao = new DatabaseAccessObject();
+		Tulos[] tulokset = dbao.haeTulokset();
+		if(tulokset != null) setItems(tulokset);
 		useDistributionBtn.setOnAction(e -> {
 			pickDistribution();
 		});

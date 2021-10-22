@@ -1,11 +1,24 @@
 package simu.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="tulos")
 public class Tulos {
+	
+	@Column(name="asiakascount")
 	private int asiakasCount;
+	@Column(name="jakauma")
 	private String distribution;
+	@Column(name="ajoaika")
 	private double ajoAika;
+	@Column(name="palvaika")
 	private double keskPalvAika;
+	@Column(name="lapiaika")
 	private double keskLapimenoAika;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private int id;
 
 	public Tulos() {
