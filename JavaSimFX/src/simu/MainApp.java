@@ -12,7 +12,12 @@ import simu.view.DatabaseGUIController;
 import simu.view.ISimulaattorinUI;
 import simu.view.RootLayoutController;
 
-public class MainApp extends Application{ // Simulaattorin käynnistyspääohjelma
+/**
+ * Simulaattorin käynnistyspääohjelma
+ * 
+ *
+ */
+public class MainApp extends Application{
 	
 	private Stage primaryStage;
 	private BorderPane root;

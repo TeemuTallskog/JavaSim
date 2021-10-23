@@ -1,5 +1,10 @@
 package simu.framework;
 
+/**
+ * Ajanhallinta simulaattorille.
+ * 
+ *
+ */
 public class Kello {
 
 	private double aika;

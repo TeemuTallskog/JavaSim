@@ -57,6 +57,8 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 
 	@Override
 	public void updateView(Palvelupiste[] pp) {
+		//Päivittää käyttöliittymää niin että asiakkaat näkyvät oikeilla
+		//palvelupisteillä.
 		for(int i = 0; i < pp.length; i++) {
 			switch (pp[i].getTyyppi()) {
 				case COFFEE:

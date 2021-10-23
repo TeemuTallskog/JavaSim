@@ -2,6 +2,12 @@ package simu.framework;
 
 import simu.model.TapahtumanTyyppi;
 
+/**
+ * Hallitsee asiakkaiden tapahtumia.
+ * 
+ *
+ */
+
 public class Tapahtuma implements Comparable<Tapahtuma> {
 	
 		

@@ -1,5 +1,9 @@
 package simu.model;
 
+/**
+*Tulos-luokalla hallitaan simulaattorin tuloksia ja Hibernaten avulla tallennetaan tulokset
+*tietokantaan.
+*/
 public class Tulos {
 	private int asiakasCount;
 	private String distribution;

@@ -4,7 +4,12 @@ import javafx.application.Platform;
 import simu.controller.IKontrolleri;
 import simu.model.Asiakas;
 import simu.model.Palvelupiste;
-
+/**
+ * Simuloinnin moottori mikä hallitsee simuloinnin etenemistä ja 
+ * satunnaisarvojen yhdistämistä kokonaisuudeksi.
+ * 
+ *
+ */
 public abstract class Moottori extends Thread implements IMoottori {
 	
 	private double simulointiaika = 0;

@@ -5,6 +5,12 @@ import java.util.Random;
 import simu.framework.Kello;
 import simu.framework.Trace;
 
+/**
+ * Asiakas-luokka luo asiakkaan ja sis‰lt‰‰ logiikan sille
+ * miten asiakkaan eri tapahtumat satunnaistetaan.
+ * 
+ *
+ */
 
 // TODO:
 // Asiakas koodataan simulointimallin edellytt√§m√§ll√§ tavalla (data!)

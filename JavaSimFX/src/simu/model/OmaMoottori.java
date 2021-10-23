@@ -9,6 +9,12 @@ import simu.framework.Moottori;
 import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
 
+/**
+ * Simuloinnin moottori mik‰ hallitsee simuloinnin etenemist‰ ja 
+ * satunnaisarvojen yhdist‰mist‰ kokonaisuudeksi.
+ *
+ */
+
 public class OmaMoottori extends Moottori {
 
 	//Muuttuja-laskureita eri pisteiden k√§vij√∂iden m√§√§r√§n mittaamiseen.

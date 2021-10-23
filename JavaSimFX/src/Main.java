@@ -8,7 +8,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Main extends Application{ // Simulaattorin käynnistyspääohjelma
+/**
+ * Simulaattorin käynnistyspääohjelma
+ * 
+ *
+ */
+public class Main extends Application{ 
 	
 	private Stage primaryStage;
 	private BorderPane root;

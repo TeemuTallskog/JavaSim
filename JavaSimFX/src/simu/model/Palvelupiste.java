@@ -9,6 +9,12 @@ import simu.framework.Tapahtuma;
 import simu.framework.Tapahtumalista;
 import simu.framework.Trace;
 
+/**
+ * Palvelupiste-luokka hallitsee palvelupisteiden
+ * jonon luonnin ja etenemisen.
+ * 
+ */
+
 // TODO:
 // Palvelupistekohtaiset toiminnallisuudet, laskutoimitukset (+ tarvittavat muuttujat) ja raportointi koodattava
 public class Palvelupiste {

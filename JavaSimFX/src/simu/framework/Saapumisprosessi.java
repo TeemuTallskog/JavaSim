@@ -1,6 +1,12 @@
 package simu.framework;
 import eduni.distributions.*;
 import simu.model.TapahtumanTyyppi;
+
+/**
+ * Generoi asiakkaille tapahtumat mitä asiakas tekee
+ * simulaatiossa.
+ *
+ */
 public class Saapumisprosessi {
 	
 	private ContinuousGenerator generaattori;
