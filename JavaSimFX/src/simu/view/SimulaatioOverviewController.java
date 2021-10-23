@@ -40,9 +40,15 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private ChoiceBox<Integer> viiveCH;
 	@FXML
+	private TextField viiveTF;
+	@FXML
 	private ChoiceBox<String> distributionBox;
 	@FXML
 	private Button startBtn;
+	@FXML
+	private Button hidastaBtn;
+	@FXML
+	private Button nopeutaBtn;
 	
 	public SimulaatioOverviewController() {
 		
@@ -51,10 +57,6 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private void initialize() {
 		kontrolleri = new Kontrolleri(this);
-		viiveCH.getItems().add(1);
-		viiveCH.getItems().add(100);
-		viiveCH.getItems().add(500);
-		viiveCH.getItems().add(1000);
 		distributionBox.getItems().add("Normal");
 	}
 
@@ -71,7 +73,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@Override
 	public long getViive() {
 		try {
-			return viiveCH.getSelectionModel().getSelectedItem();
+			String input = viiveTF.getText();
+			long n = Long.parseLong(input);
+			return n;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -87,6 +91,32 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	public IVisualisointi getVisualisointi() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@FXML
+	private void hidasta() {
+		kontrolleri.hidasta();
+		try {
+			String delay = viiveTF.getText();
+			int n = Integer.parseInt(delay);
+			n += 50;
+			viiveTF.setText("" + n);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	private void nopeuta() {
+		kontrolleri.nopeuta();
+		try {
+			String delay = viiveTF.getText();
+			int n = Integer.parseInt(delay);
+			n -= 50;
+			viiveTF.setText("" + n);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

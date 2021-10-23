@@ -29,12 +29,12 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 
 	@Override
 	public void hidasta() { // hidastetaan moottorisäiettä
-		moottori.setViive((long) (moottori.getViive() * 1.10));
+		moottori.setViive((long) (moottori.getViive() + 50));
 	}
 
 	@Override
 	public void nopeuta() { // nopeutetaan moottorisäiettä
-		moottori.setViive((long) (moottori.getViive() * 0.9));
+		moottori.setViive((long) (moottori.getViive() - 50));
 	}
 
 	// Simulointitulosten välittämistä käyttöliittymään.
