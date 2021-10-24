@@ -60,6 +60,7 @@ public abstract class Moottori extends Thread implements IMoottori {
 				public void run() {
 					kontrolleri.updateView(palvelupisteet);
 					kontrolleri.updateResults(resultSet());
+					kontrolleri.updateTime(kello.getAika());
 				}
 			});
 			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );

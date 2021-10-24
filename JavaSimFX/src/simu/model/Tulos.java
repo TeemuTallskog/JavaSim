@@ -9,13 +9,15 @@ public class Tulos {
 	@Column(name="asiakascount")
 	private int asiakasCount;
 	@Column(name="jakauma")
-	private String distribution;
+	private DistributionTyyppi distribution;
 	@Column(name="ajoaika")
 	private double ajoAika;
 	@Column(name="palvaika")
 	private double keskPalvAika;
 	@Column(name="lapiaika")
 	private double keskLapimenoAika;
+	@Column(name="allcustomers")
+	private int allCustomers;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
@@ -23,6 +25,14 @@ public class Tulos {
 
 	public Tulos() {
 
+	}
+	
+	public void setAllCustomers(int i) {
+		this.allCustomers = i;
+	}
+	
+	public int getAllCustomers() {
+		return allCustomers;
 	}
 	
 	public int getId() {
@@ -41,11 +51,11 @@ public class Tulos {
 		this.asiakasCount = asiakasCount;
 	}
 
-	public String getDistribution() {
+	public DistributionTyyppi getDistribution() {
 		return distribution;
 	}
 
-	public void setDistribution(String distribution) {
+	public void setDistribution(DistributionTyyppi distribution) {
 		this.distribution = distribution;
 	}
 

@@ -2,6 +2,8 @@ package simu.controller;
 
 import javafx.application.Platform;
 import simu.framework.IMoottori;
+import simu.framework.Kello;
+import simu.model.Asiakas;
 import simu.model.OmaMoottori;
 import simu.model.Palvelupiste;
 import simu.view.ISimulaattorinUI;
@@ -82,13 +84,39 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 					break;
 			}
 		}
-
 	}
+	
+	
 
 	@Override
 	public void updateResults(double[] results) {
 		ui.setKeskLapiMeno(results[1]);
 		ui.setKeskPalvAika(results[0]);
 	}
+
+	@Override
+	public ISimulaattorinUI getUI() {
+		return this.ui;
+	}
+
+	@Override
+	public void readyCustomer(Asiakas a) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				ui.addReadyCustomer(a);
+			}
+		});
+	}
+	
+	@Override
+	public void newCustomer() {
+		this.ui.newCustomer();
+	}
+
+	@Override
+	public void updateTime(double t) {
+		ui.updateTime(t);
+	}
+	
 
 }

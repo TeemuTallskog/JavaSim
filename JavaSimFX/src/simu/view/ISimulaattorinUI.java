@@ -1,6 +1,7 @@
 package simu.view;
 
 import simu.model.Asiakas;
+import simu.model.DistributionTyyppi;
 
 public interface ISimulaattorinUI {
 	
@@ -14,6 +15,8 @@ public interface ISimulaattorinUI {
 	// Kontrolleri tarvitsee  
 	public IVisualisointi getVisualisointi();
 	public ISimulaattorinUI getReference();
+	public DistributionTyyppi getDistribution();
+	
 	
 	public void setKahvilaJono(Asiakas[] list);
 	public void setKahvila(Asiakas[] list);
@@ -24,8 +27,11 @@ public interface ISimulaattorinUI {
 	public void setIpKassaJono(Asiakas[] list);
 	public void setKassa(Asiakas[] list);
 	public void setKassaJono(Asiakas[] list);
-	public void setDistribution(String distribution);
+	public void setDistribution(DistributionTyyppi distribution);
 	public void setKeskLapiMeno(double time);
 	public void setKeskPalvAika(double time);
+	public void addReadyCustomer(Asiakas a);
+	public void updateTime(double t);
+	public void newCustomer();
 
 }

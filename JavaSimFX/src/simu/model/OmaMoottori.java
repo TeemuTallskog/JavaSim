@@ -1,8 +1,9 @@
 package simu.model;
 
+import eduni.distributions.Gamma;
+import eduni.distributions.Logistic;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
-import javafx.application.Platform;
 import simu.controller.IKontrolleri;
 import simu.framework.Kello;
 import simu.framework.Moottori;
@@ -43,7 +44,7 @@ public class OmaMoottori extends Moottori {
 																										// kassa
 				PalveluTyyppi.SELFSERVICE);
 
-		saapumisprosessi = new Saapumisprosessi(new Negexp(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+		generateSaapumisprosessi();
 
 	}
 
@@ -61,7 +62,7 @@ public class OmaMoottori extends Moottori {
 		case ARR1:
 			a = new Asiakas();
 			asiakas++;
-			
+			this.kontrolleri.newCustomer();
 			// Lisää asiakkaan oikeaan palvelupisteeseen asiakkaalle generoitujen tarpeiden
 			// mukaan.
 			if (a.isKahvi()) {
@@ -111,12 +112,14 @@ public class OmaMoottori extends Moottori {
 			a.setPoistumisaika(Kello.getInstance().getAika());
 			kassaAsiakas++;
 			a.raportti();
+			this.kontrolleri.readyCustomer(a);
 			break;
 		case DEP6:
 			a = palvelupisteet[5].otaJonosta();
 			a.setPoistumisaika(Kello.getInstance().getAika());
 			ipKassaAsiakas++;
 			a.raportti();
+			this.kontrolleri.readyCustomer(a);
 			break;
 		}
 	}
@@ -164,12 +167,13 @@ public class OmaMoottori extends Moottori {
 		System.out.println("\nItsepalvelukassan läpi kulki " + getIpKassaAsiakas() + " asiakasta.");
 		System.out.println("Normaalin kassan läpi kulki " + getKassaAsiakas() + " asiakasta.");
 		Tulos tulos = new Tulos();
-		tulos.setDistribution(getName());
+		tulos.setDistribution(this.kontrolleri.getUI().getDistribution());
 		tulos.setAjoAika(this.getSimulointiAika());
 		tulos.setAsiakasCount(this.getCompletedCustomers());
 		tulos.setKeskLapimenoAika(Asiakas.getTimeSum() / this.getCompletedCustomers());
 		IDatabaseAccessObject dbao = new DatabaseAccessObject();
 		tulos.setKeskPalvAika(palvelupisteet[1].getAvrgPalvAika());
+		tulos.setAllCustomers(asiakas);
 		dbao.vieTulos(tulos);
 	}
 	
@@ -179,6 +183,23 @@ public class OmaMoottori extends Moottori {
 		results[0] = palvelupisteet[1].getAvrgPalvAika();
 		results[1] = Asiakas.getTimeSum() / this.getCompletedCustomers();
 		return results;
+	}
+	
+	public void generateSaapumisprosessi() {
+		switch(kontrolleri.getUI().getDistribution()) {
+		case NegExp:
+			saapumisprosessi = new Saapumisprosessi(new Negexp(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			break;
+		case Normal:
+			saapumisprosessi = new Saapumisprosessi(new Normal(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			break;
+		case Gamma:
+			saapumisprosessi = new Saapumisprosessi(new Gamma(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			break;
+		case Logistic:
+			saapumisprosessi = new Saapumisprosessi(new Logistic(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			break;
+		}
 	}
 
 }

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -38,19 +39,7 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <Label text="Keskimääräinen palveluaika" />
-                        <ListView fx:id="keskPalveluAika" prefHeight="39.0" prefWidth="150.0">
-                           <VBox.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </VBox.margin>
-                        </ListView>
-                        <Label text="Keskimääräinen läpimeno" />
-                        <ListView fx:id="keskLapimeno" prefHeight="39.0" prefWidth="150.0">
-                           <VBox.margin>
-                              <Insets left="50.0" right="50.0" />
-                           </VBox.margin>
-                        </ListView>
-                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0" translateX="-10.0">
                           <buttons>
                             <Button fx:id="hidastaBtn" mnemonicParsing="false" onAction="#hidasta" text="Hidasta" />
                               <Button fx:id="nopeutaBtn" mnemonicParsing="false" onAction="#nopeuta" text="Nopeuta" />
@@ -72,7 +61,7 @@
                   <Label layoutX="530.0" layoutY="30.0" text="Kassa" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="30.0" />
                   <ListView fx:id="kahvilaTiski" layoutX="90.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
                   <Label layoutX="23.0" layoutY="63.0" text="Palvellaan" />
-                  <Label layoutX="29.0" layoutY="118.0" text="Jonossa" />
+                  <Label layoutX="23.0" layoutY="118.0" text="Jonossa" />
                   <ListView fx:id="kahvilaJono" layoutX="90.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
                   <ListView fx:id="kaupanHyllyt" layoutX="90.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
                   <ListView fx:id="lihaTiski" layoutX="201.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
@@ -81,10 +70,17 @@
                   <ListView fx:id="ipKassa" layoutX="314.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
                   <ListView fx:id="kassaJono" layoutX="431.0" layoutY="118.0" prefHeight="129.0" prefWidth="99.0" />
                   <ListView fx:id="kassaTiski" layoutX="431.0" layoutY="63.0" prefHeight="39.0" prefWidth="99.0" />
-                  <Label layoutX="293.0" layoutY="282.0" text="Asiakkaat järjestelmässä" />
-                  <ListView fx:id="Asiakkaat" layoutX="307.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
-                  <Label layoutX="447.0" layoutY="282.0" text="Valmiit" />
-                  <ListView fx:id="PalvellutAsiakkaat" layoutX="431.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
+                  <Label layoutX="317.0" layoutY="282.0" text="Saapuneiden lkm." />
+                  <TextArea fx:id="customerCount" layoutX="314.0" layoutY="305.0" prefHeight="39.0" prefWidth="99.0" text="0" />
+                  <Label fx:id="readyCustomersLabel" layoutX="428.0" layoutY="282.0" text="Valmiit asiakkaat (0)" />
+                  <ListView fx:id="valmiitList" layoutX="431.0" layoutY="305.0" prefHeight="184.0" prefWidth="99.0" />
+                  <Label layoutX="204.0" layoutY="282.0" text="Kesk. palveluaika" />
+                  <ListView fx:id="keskPalveluAika" layoutX="199.0" layoutY="305.0" prefHeight="39.0" prefWidth="99.0" />
+                  <Label layoutX="209.0" layoutY="367.0" text="Kesk. läpimeno" />
+                  <ListView fx:id="keskLapimeno" layoutX="199.0" layoutY="397.0" prefHeight="39.0" prefWidth="99.0" />
+                  <Label layoutX="330.0" layoutY="367.0" text="System Time" />
+                  <TextArea fx:id="sysTime" layoutX="314.0" layoutY="397.0" prefHeight="39.0" prefWidth="99.0" />
+                  <Label layoutX="23.0" layoutY="521.0" text="Asiakkaat näyetään muodossa: Asiakas ID (Ostosten määrä ostoskorissa)" />
                </children>
             </AnchorPane>
         </items>

@@ -1,40 +1,49 @@
 package simu.view;
 
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import simu.controller.IKontrolleri;
 import simu.controller.Kontrolleri;
+import simu.framework.Kello;
 import simu.model.Asiakas;
+import simu.model.DistributionTyyppi;
 
 public class SimulaatioOverviewController implements ISimulaattorinUI {
 
 	private IKontrolleri kontrolleri;
 	
 	@FXML
-	private ListView<String> kahvilaJono;
+	private ListView<Asiakas> kahvilaJono;
 	@FXML
-	private ListView<String> kahvilaTiski;
+	private ListView<Asiakas> kahvilaTiski;
 	@FXML
-	private ListView<String> lihaJono;
+	private ListView<Asiakas> lihaJono;
 	@FXML
-	private ListView<String> lihaTiski;
+	private ListView<Asiakas> lihaTiski;
 	@FXML
-	private ListView<String> kaupanHyllyt;
+	private ListView<Asiakas> kaupanHyllyt;
 	@FXML
-	private ListView<String> kassaTiski;
+	private ListView<Asiakas> kassaTiski;
 	@FXML
-	private ListView<String> kassaJono;
+	private ListView<Asiakas> kassaJono;
 	@FXML
-	private ListView<String> ipKassa;
+	private ListView<Asiakas> ipKassa;
 	@FXML
-	private ListView<String> ipJono;
+	private ListView<Asiakas> ipJono;
 	@FXML
 	private ListView<String> keskPalveluAika;
 	@FXML
 	private ListView<String> keskLapimeno;
+	@FXML
+	private ListView<Asiakas> valmiitList;
 	@FXML
 	private TextField ajoAika;
 	@FXML
@@ -42,13 +51,21 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private TextField viiveTF;
 	@FXML
-	private ChoiceBox<String> distributionBox;
+	private ChoiceBox<DistributionTyyppi> distributionBox;
 	@FXML
 	private Button startBtn;
 	@FXML
 	private Button hidastaBtn;
 	@FXML
 	private Button nopeutaBtn;
+	@FXML
+	private TextArea sysTime;
+	@FXML
+	private TextArea customerCount;
+	@FXML
+	private Label readyCustomersLabel;
+	@FXML
+	private Button resetBtn;
 	
 	public SimulaatioOverviewController() {
 		
@@ -57,7 +74,13 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@FXML
 	private void initialize() {
 		kontrolleri = new Kontrolleri(this);
-		distributionBox.getItems().add("Normal");
+		distributionBox.getItems().addAll(DistributionTyyppi.values());
+		distributionBox.setValue(DistributionTyyppi.Normal);
+	}
+	
+	@Override
+	public DistributionTyyppi getDistribution() {
+		return distributionBox.getValue();
 	}
 
 	@Override
@@ -121,86 +144,85 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	
 	@FXML
 	private void startSimu() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText(null);
+		try {
+			int i = Integer.parseInt(ajoAika.getText());
+		}catch(Exception e) {
+			alert.setContentText("Insert ajoaika.");
+			alert.showAndWait();
+			return;
+		}
+		try {
+			int i = Integer.parseInt(viiveTF.getText());
+		}catch(Exception e) {
+			alert.setContentText("Insert viive.");
+			alert.showAndWait();
+			return;
+		}
 		kontrolleri.kaynnistaSimulointi();
 		startBtn.setDisable(true);
 	}
+	
+
 
 	@Override
 	public void setKahvilaJono(Asiakas[] list) {
 		kahvilaJono.getItems().clear();
-		for(Asiakas a: list) {
-			kahvilaJono.getItems().add("Asiakas " + a.getId());
-		}
+		kahvilaJono.getItems().addAll(list);
 	}
 
 	@Override
 	public void setKahvila(Asiakas[] list) {
 		kahvilaTiski.getItems().clear();
-		for(Asiakas a: list) {
-			kahvilaTiski.getItems().add("Asiakas " + a.getId());
-		}
+		kahvilaTiski.getItems().addAll(list);
 	}
 
 	@Override
 	public void setHyllyt(Asiakas[] list) {
 		kaupanHyllyt.getItems().clear();
-		for(Asiakas a: list) {
-			kaupanHyllyt.getItems().add("Asiakas " + a.getId());
-		}
-		
+		kaupanHyllyt.getItems().addAll(list);	
 	}
 
 	@Override
 	public void setLihaTiski(Asiakas[] list) {
 		lihaTiski.getItems().clear();
-		for(Asiakas a: list) {
-			lihaTiski.getItems().add("Asiakas " + a.getId());
-		}
-		
+		lihaTiski.getItems().addAll(list);	
 	}
 
 	@Override
 	public void setLihaJono(Asiakas[] list) {
 		lihaJono.getItems().clear();
-		for(Asiakas a: list) {
-			lihaJono.getItems().add("Asiakas " + a.getId());
-		}
+		lihaJono.getItems().addAll(list);
 	}
 
 	@Override
 	public void setIpKassa(Asiakas[] list) {
 		ipKassa.getItems().clear();
-		for(Asiakas a: list) {
-			ipKassa.getItems().add("Asiakas " + a.getId());
-		}
+		ipKassa.getItems().addAll(list);
 	}
 	
 	@Override
 	public void setIpKassaJono(Asiakas[] list) {
 		ipJono.getItems().clear();
-		for(Asiakas a: list) {
-			ipJono.getItems().add("Asiakas " + a.getId());
-		}
+		ipJono.getItems().addAll(list);
 	}
 
 	@Override
 	public void setKassa(Asiakas[] list) {
 		kassaTiski.getItems().clear();
-		for(Asiakas a: list) {
-			kassaTiski.getItems().add("Asiakas " + a.getId());
-		}
+		kassaTiski.getItems().addAll(list);
 	}
 
 	@Override
 	public void setKassaJono(Asiakas[] list) {
 		kassaJono.getItems().clear();
-		for(Asiakas a: list) {
-			kassaJono.getItems().add("Asiakas " + a.getId());
-		}
+		kassaJono.getItems().addAll(list);
 	}
 
 	@Override
-	public void setDistribution(String distribution) {
+	public void setDistribution(DistributionTyyppi distribution) {
 		distributionBox.setValue(distribution);
 	}
 
@@ -219,5 +241,27 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	public void setKeskPalvAika(double time) {
 		keskPalveluAika.getItems().clear();
 		keskPalveluAika.getItems().add(String.format("%.2f", time)); 	
-	}	
+	}
+
+	@Override
+	public void addReadyCustomer(Asiakas a) {
+		valmiitList.getItems().add(a);
+		readyCustomersLabel.setText("Valmiit asiakkaat (" + valmiitList.getItems().size() + ")");
+	}
+
+	@Override
+	public void updateTime(double t) {
+		sysTime.setText("" + String.format("%.2f", t));
+	}
+	
+	@Override
+	public void newCustomer() {
+		try {
+			int i  = Integer.parseInt(customerCount.getText());
+			i++;
+			customerCount.setText("" + i);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

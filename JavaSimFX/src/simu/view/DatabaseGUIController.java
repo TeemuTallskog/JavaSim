@@ -37,6 +37,9 @@ public class DatabaseGUIController {
 	private TableColumn<Tulos, Double> avrgServiceTime;
 	
 	@FXML
+	private TableColumn<Tulos, Integer> allCustomers;
+	
+	@FXML
 	private Button useDistributionBtn;
 	
 	@FXML
@@ -64,6 +67,7 @@ public class DatabaseGUIController {
 		customersServed.setCellValueFactory(new PropertyValueFactory<>("asiakasCount"));
 		avrgPasstrough.setCellValueFactory(new PropertyValueFactory<>("keskPalvAika"));
 		avrgServiceTime.setCellValueFactory(new PropertyValueFactory<>("keskLapimenoAika"));
+		allCustomers.setCellValueFactory(new PropertyValueFactory<>("allCustomers"));
 	}
 	
 	public DatabaseGUIController() {

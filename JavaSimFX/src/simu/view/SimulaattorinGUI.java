@@ -15,6 +15,7 @@ import simu.controller.*;
 import simu.framework.Trace;
 import simu.framework.Trace.Level;
 import simu.model.Asiakas;
+import simu.model.DistributionTyyppi;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
@@ -224,11 +225,6 @@ public class SimulaattorinGUI extends Application implements ISimulaattorinUI{
 		
 	}
 
-	@Override
-	public void setDistribution(String distribution) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public ISimulaattorinUI getReference() {
@@ -244,6 +240,36 @@ public class SimulaattorinGUI extends Application implements ISimulaattorinUI{
 
 	@Override
 	public void setKeskPalvAika(double time) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public DistributionTyyppi getDistribution() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setDistribution(DistributionTyyppi distribution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addReadyCustomer(Asiakas a) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateTime(double t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newCustomer() {
 		// TODO Auto-generated method stub
 		
 	}

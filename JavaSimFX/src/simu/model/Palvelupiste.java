@@ -59,36 +59,40 @@ public class Palvelupiste {
 		case REGISTER:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui kassalle ostoskori: " + jono.peek().getOstoskori());
 			
-			palveluaika = jono.peek().getOstoskori() * 1.2; //palveluaika on ostosten määrä * 1.2
+			palveluaika = jono.peek().getOstoskori() * 0.7; //palveluaika on ostosten määrä * 0.7
 			break;
 			
 		case SELFSERVICE:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui itsepalvelukassalle ostoskori: " + jono.peek().getOstoskori());
-			palveluaika = jono.peek().getOstoskori() * 1.8; //palveluaika on ostosten määrä * 1.8
+			palveluaika = jono.peek().getOstoskori() * 1.4; //palveluaika on ostosten määrä * 1.8
 			break;
 			
 		case MEAT:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui lihatiskille");
 			jono.peek().lisaaOstos(rand.nextInt(3) + 1);//lisää 1-3 ostosta asiakkaalle
-			palveluaika = palveluaika/3; //Lihatiskin palveluaika on 1/3 tavallisesta palveluajasta.
+			palveluaika = palveluaika/2; //Lihatiskin palveluaika on 1/3 tavallisesta palveluajasta.
 			break;
 			
 		case SHOP:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() +". valitsee ostoksia.");
-			jono.peek().lisaaOstos(rand.nextInt(30) + 2);
+			int n = rand.nextInt(30) + 2;
+			jono.peek().lisaaOstos(n);
+			if(n < 15) {
+				palveluaika = palveluaika * 3;
+			}else palveluaika = palveluaika * 6;
 			varattu = false; //kaupan hyllyillä ei oli jonoa, joten monta asiakasta pystyy valitsemaan ostoksia saman aikaisesti, eikä ne ole ikinä varattuna.
 			jonotonPalvelupiste.add(jono.poll());//asiakas siirretään jonosta jonottomaan palvelupisteeseen.
 			break;
 			
 		case COFFEE:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui Kahvilaan");
-			palveluaika = palveluaika/3; //kahvilan palveluaika on 1/3 tavallisesta palveluajasta.
+			palveluaika = palveluaika/2;
 			jono.peek().setKahvi(rand.nextBoolean());//50% jää kahvilaan juomaan kahvin, 50% poistuu kahvin kanssa
 			break;
 			
 		case COFFEE_TABLE:
 			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". päätti jäädä juomaan kahviaan kahvilaan.");
-			palveluaika = palveluaika/2;//kahvin juonti aika on 1/2 palveluajasta.
+			palveluaika = palveluaika * 1.5;//kahvin juonti aika on 1/2 palveluajasta.
 			varattu = false; //Kahvilan pöydissä ei ole jonoa, monta asiakasta pystyy juomaan kahvia saman aikaisesti, joten pöydät eivät ole ikinä varattu.
 			jonotonPalvelupiste.add(jono.poll());//asiakas siirretään jonosta jonottomaan palvelupisteeseen.
 			break;

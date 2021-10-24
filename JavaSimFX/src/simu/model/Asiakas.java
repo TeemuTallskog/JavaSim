@@ -95,5 +95,10 @@ public class Asiakas {
 	public boolean isLiha() {
 		return liha;
 	}
+	
+	@Override
+	public String toString() {
+		return "Asiakas " + this.id + " (" + this.ostoskori + ")";
+	}
 
 }
