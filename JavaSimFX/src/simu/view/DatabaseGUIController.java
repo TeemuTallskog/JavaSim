@@ -71,8 +71,8 @@ public class DatabaseGUIController {
 		distribution.setCellValueFactory(new PropertyValueFactory<>("distribution"));
 		runTime.setCellValueFactory(new PropertyValueFactory<>("ajoAika"));
 		customersServed.setCellValueFactory(new PropertyValueFactory<>("asiakasCount"));
-		avrgPasstrough.setCellValueFactory(new PropertyValueFactory<>("keskPalvAika"));
-		avrgServiceTime.setCellValueFactory(new PropertyValueFactory<>("keskLapimenoAika"));
+		avrgPasstrough.setCellValueFactory(new PropertyValueFactory<>("keskLapimenoAika"));
+		avrgServiceTime.setCellValueFactory(new PropertyValueFactory<>("keskPalvAika"));
 		allCustomers.setCellValueFactory(new PropertyValueFactory<>("allCustomers"));
 		firstArg.setCellValueFactory(new PropertyValueFactory<>("firstArg"));
 		secondArg.setCellValueFactory(new PropertyValueFactory<>("secondArg"));
