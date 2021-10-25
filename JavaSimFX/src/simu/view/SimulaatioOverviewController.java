@@ -118,12 +118,12 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	
 	@FXML
 	private void hidasta() {
-		kontrolleri.hidasta();
 		try {
 			String delay = viiveTF.getText();
 			int n = Integer.parseInt(delay);
 			n += 50;
 			viiveTF.setText("" + n);
+			kontrolleri.hidasta();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -131,13 +131,13 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 
 	@FXML
 	private void nopeuta() {
-		kontrolleri.nopeuta();
 		try {
 			String delay = viiveTF.getText();
 			int n = Integer.parseInt(delay);
 			if(n<51)throw new IllegalArgumentException();
 			n -= 50;
 			viiveTF.setText("" + n);
+			kontrolleri.nopeuta();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
