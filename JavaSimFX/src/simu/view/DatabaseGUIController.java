@@ -81,7 +81,7 @@ public class DatabaseGUIController {
 	public DatabaseGUIController() {
 	}
 	
-	/*
+	/**
 	 * Used to set a reference to the main application controller.
 	 */
 	public void setUI(ISimulaattorinUI ui) {
