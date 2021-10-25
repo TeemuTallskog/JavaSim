@@ -135,6 +135,7 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		try {
 			String delay = viiveTF.getText();
 			int n = Integer.parseInt(delay);
+			if(n<51)throw new IllegalArgumentException();
 			n -= 50;
 			viiveTF.setText("" + n);
 		}catch(Exception e) {
@@ -149,6 +150,7 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		alert.setHeaderText(null);
 		try {
 			int i = Integer.parseInt(ajoAika.getText());
+			if(i < 0)throw new IllegalArgumentException();
 		}catch(Exception e) {
 			alert.setContentText("Insert ajoaika.");
 			alert.showAndWait();
@@ -156,6 +158,7 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		}
 		try {
 			int i = Integer.parseInt(viiveTF.getText());
+			if(i < 0) throw new IllegalArgumentException();
 		}catch(Exception e) {
 			alert.setContentText("Insert viive.");
 			alert.showAndWait();
