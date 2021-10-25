@@ -1,6 +1,7 @@
 package simu.view;
 
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -66,6 +67,11 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	private Label readyCustomersLabel;
 	@FXML
 	private Button resetBtn;
+	@FXML
+	private TextField firstArgument;
+	@FXML
+	private TextField secondArgument;
+	private static int completedCount;
 	
 	public SimulaatioOverviewController() {
 		
@@ -164,6 +170,15 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 			alert.showAndWait();
 			return;
 		}
+		try {
+			int[] args = getDistributionArguments();
+			if(args == null) throw new IllegalArgumentException();
+			if(args[0] < 0 || args[1] < 0) throw new IllegalArgumentException();
+		}catch(Exception e) {
+			alert.setContentText("Insert only positive distribution arguments.");
+			alert.showAndWait();
+			return;
+		}
 		kontrolleri.kaynnistaSimulointi();
 		startBtn.setDisable(true);
 	}
@@ -173,55 +188,55 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	@Override
 	public void setKahvilaJono(Asiakas[] list) {
 		kahvilaJono.getItems().clear();
-		kahvilaJono.getItems().addAll(list);
+		kahvilaJono.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
 	public void setKahvila(Asiakas[] list) {
 		kahvilaTiski.getItems().clear();
-		kahvilaTiski.getItems().addAll(list);
+		kahvilaTiski.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
 	public void setHyllyt(Asiakas[] list) {
 		kaupanHyllyt.getItems().clear();
-		kaupanHyllyt.getItems().addAll(list);	
+		kaupanHyllyt.getItems().addAll(sliceArray(list));	
 	}
 
 	@Override
 	public void setLihaTiski(Asiakas[] list) {
 		lihaTiski.getItems().clear();
-		lihaTiski.getItems().addAll(list);	
+		lihaTiski.getItems().addAll(sliceArray(list));	
 	}
 
 	@Override
 	public void setLihaJono(Asiakas[] list) {
 		lihaJono.getItems().clear();
-		lihaJono.getItems().addAll(list);
+		lihaJono.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
 	public void setIpKassa(Asiakas[] list) {
 		ipKassa.getItems().clear();
-		ipKassa.getItems().addAll(list);
+		ipKassa.getItems().addAll(sliceArray(list));
 	}
 	
 	@Override
 	public void setIpKassaJono(Asiakas[] list) {
 		ipJono.getItems().clear();
-		ipJono.getItems().addAll(list);
+		ipJono.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
 	public void setKassa(Asiakas[] list) {
 		kassaTiski.getItems().clear();
-		kassaTiski.getItems().addAll(list);
+		kassaTiski.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
 	public void setKassaJono(Asiakas[] list) {
 		kassaJono.getItems().clear();
-		kassaJono.getItems().addAll(list);
+		kassaJono.getItems().addAll(sliceArray(list));
 	}
 
 	@Override
@@ -248,8 +263,10 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 
 	@Override
 	public void addReadyCustomer(Asiakas a) {
-		valmiitList.getItems().add(a);
-		readyCustomersLabel.setText("Valmiit asiakkaat (" + valmiitList.getItems().size() + ")");
+		completedCount++;
+		if(valmiitList.getItems().size() > 20) valmiitList.getItems().remove(valmiitList.getItems().size() - 1);
+		valmiitList.getItems().add(0, a);
+		readyCustomersLabel.setText("Valmiit asiakkaat (" + completedCount + ")");
 	}
 
 	@Override
@@ -266,5 +283,31 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public int[] getDistributionArguments() {
+		int[] args = new int[2];
+		try {
+			args[0] = Integer.parseInt(firstArgument.getText());
+			args[1] = Integer.parseInt(secondArgument.getText());
+		}catch(Exception e) {
+			e.printStackTrace();
+			args = null;
+		}
+		return args;
+	}
+	
+	private Asiakas[] sliceArray(Asiakas[] list) {
+		if(list.length < 21) return list;
+		Asiakas[] arr = new Asiakas[20];
+		System.arraycopy(list, 0, arr, 0, 20);
+		return arr;
+	}
+
+	@Override
+	public void setDistributionArguments(int[] args) {
+		firstArgument.setText("" + args[0]);
+		secondArgument.setText("" + args[1]);
 	}
 }

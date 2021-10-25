@@ -40,6 +40,12 @@ public class DatabaseGUIController {
 	private TableColumn<Tulos, Integer> allCustomers;
 	
 	@FXML
+	private TableColumn<Tulos, Integer> firstArg;
+	
+	@FXML
+	private TableColumn<Tulos, Integer> secondArg;
+	
+	@FXML
 	private Button useDistributionBtn;
 	
 	@FXML
@@ -68,6 +74,8 @@ public class DatabaseGUIController {
 		avrgPasstrough.setCellValueFactory(new PropertyValueFactory<>("keskPalvAika"));
 		avrgServiceTime.setCellValueFactory(new PropertyValueFactory<>("keskLapimenoAika"));
 		allCustomers.setCellValueFactory(new PropertyValueFactory<>("allCustomers"));
+		firstArg.setCellValueFactory(new PropertyValueFactory<>("firstArg"));
+		secondArg.setCellValueFactory(new PropertyValueFactory<>("secondArg"));
 	}
 	
 	public DatabaseGUIController() {
@@ -87,6 +95,10 @@ public class DatabaseGUIController {
 			@Override
 			public void run() {
 				ui.setDistribution(t.getDistribution());
+				int[] args = new int[2];
+				args[0] = t.getFirstArg();
+				args[1] = t.getSecondArg();
+				ui.setDistributionArguments(args);
 			}
 		});
 		returnToMain();

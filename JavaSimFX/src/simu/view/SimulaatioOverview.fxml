@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane minHeight="600.0" minWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simu.view.SimulaatioOverviewController">
@@ -28,6 +29,28 @@
                         </TextField>
                         <Label text="Jakauma" />
                         <ChoiceBox fx:id="distributionBox" prefWidth="150.0" />
+                        <HBox alignment="CENTER" prefHeight="50.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="1st Arg. (15 def.)" />
+                                    <TextField fx:id="firstArgument" alignment="CENTER" text="15" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="12.0" right="12.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="2nd Arg. (5 def.)" />
+                                    <TextField fx:id="secondArgument" alignment="CENTER" text="5" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="12.0" right="12.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
                         <Label text="Viive" />
                         <TextField fx:id="viiveTF">
                            <VBox.margin>
@@ -81,6 +104,7 @@
                   <Label layoutX="330.0" layoutY="367.0" text="System Time" />
                   <TextArea fx:id="sysTime" layoutX="314.0" layoutY="397.0" prefHeight="39.0" prefWidth="99.0" />
                   <Label layoutX="23.0" layoutY="521.0" text="Asiakkaat näyetään muodossa: Asiakas ID (Ostosten määrä ostoskorissa)" />
+                  <Label layoutX="23.0" layoutY="538.0" text="Asiakas listat näyttää vain 20 ensimmäistä/viimeisintä asiakassta simulaattorin toimintanopeuden kannalta." />
                </children>
             </AnchorPane>
         </items>

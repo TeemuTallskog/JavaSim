@@ -22,6 +22,10 @@ public class Tulos {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
+	@Column
+	private int firstArg;
+	@Column
+	private int secondArg;
 
 	public Tulos() {
 
@@ -31,6 +35,22 @@ public class Tulos {
 		this.allCustomers = i;
 	}
 	
+	public int getFirstArg() {
+		return firstArg;
+	}
+
+	public void setFirstArg(int firstArg) {
+		this.firstArg = firstArg;
+	}
+
+	public int getSecondArg() {
+		return secondArg;
+	}
+
+	public void setSecondArg(int secondArg) {
+		this.secondArg = secondArg;
+	}
+
 	public int getAllCustomers() {
 		return allCustomers;
 	}

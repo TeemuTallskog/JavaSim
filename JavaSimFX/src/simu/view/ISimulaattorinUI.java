@@ -16,6 +16,7 @@ public interface ISimulaattorinUI {
 	public IVisualisointi getVisualisointi();
 	public ISimulaattorinUI getReference();
 	public DistributionTyyppi getDistribution();
+	public int[] getDistributionArguments();
 	
 	
 	public void setKahvilaJono(Asiakas[] list);
@@ -33,5 +34,7 @@ public interface ISimulaattorinUI {
 	public void addReadyCustomer(Asiakas a);
 	public void updateTime(double t);
 	public void newCustomer();
+	public void setDistributionArguments(int[] args);
+	
 
 }

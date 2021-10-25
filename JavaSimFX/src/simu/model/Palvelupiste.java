@@ -7,7 +7,6 @@ import eduni.distributions.ContinuousGenerator;
 import simu.framework.Kello;
 import simu.framework.Tapahtuma;
 import simu.framework.Tapahtumalista;
-import simu.framework.Trace;
 
 // TODO:
 // Palvelupistekohtaiset toiminnallisuudet, laskutoimitukset (+ tarvittavat muuttujat) ja raportointi koodattava
@@ -36,12 +35,12 @@ public class Palvelupiste {
 	}
 
 
-	public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
+	public synchronized void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
 		jono.add(a);
 		
 	}
 
-	public Asiakas otaJonosta(){  // Poistetaan palvelussa ollut
+	public synchronized Asiakas otaJonosta(){  // Poistetaan palvelussa ollut
 		varattu = false;
 		if(this.palvelupisteenTyyppi == PalveluTyyppi.SHOP || this.palvelupisteenTyyppi == PalveluTyyppi.COFFEE_TABLE) {
 			return jonotonPalvelupiste.poll();
@@ -49,49 +48,47 @@ public class Palvelupiste {
 		return jono.poll();
 	}
 
-	public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
+	public synchronized void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
 		Random rand = new Random();
 		double palveluaika = generator.sample();
 		varattu = true;
-		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
+		System.out.println("Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
 		
 		switch(palvelupisteenTyyppi) {
 		case REGISTER:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui kassalle ostoskori: " + jono.peek().getOstoskori());
+			System.out.println( "Asiakas " + jono.peek().getId() + ". saapui kassalle ostoskori: " + jono.peek().getOstoskori());
 			
-			palveluaika = jono.peek().getOstoskori() * 0.7; //palveluaika on ostosten määrä * 0.7
+			palveluaika = jono.peek().getOstoskori() * 1.4; //Kassan palveluaika määräytyy asiakkaan ostoksien määrän mukaan.
 			break;
 			
 		case SELFSERVICE:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui itsepalvelukassalle ostoskori: " + jono.peek().getOstoskori());
-			palveluaika = jono.peek().getOstoskori() * 1.4; //palveluaika on ostosten määrä * 1.8
+			System.out.println("Asiakas " + jono.peek().getId() + ". saapui itsepalvelukassalle ostoskori: " + jono.peek().getOstoskori());
+			palveluaika = jono.peek().getOstoskori() * 2.8; //Itsepalvelussa palveluaika on 2x kassan palveluaika per ostos.
 			break;
 			
 		case MEAT:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui lihatiskille");
+			System.out.println("Asiakas " + jono.peek().getId() + ". saapui lihatiskille");
 			jono.peek().lisaaOstos(rand.nextInt(3) + 1);//lisää 1-3 ostosta asiakkaalle
 			palveluaika = palveluaika/2; //Lihatiskin palveluaika on 1/3 tavallisesta palveluajasta.
 			break;
 			
 		case SHOP:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() +". valitsee ostoksia.");
-			int n = rand.nextInt(30) + 2;
+			System.out.println( "Asiakas " + jono.peek().getId() +". valitsee ostoksia.");
+			int n = rand.nextInt(30) + 2;//asiakkaille arvottu ostosten määrä hyllyiltä
 			jono.peek().lisaaOstos(n);
-			if(n < 15) {
-				palveluaika = palveluaika * 3;
-			}else palveluaika = palveluaika * 6;
+			palveluaika = palveluaika * 6 * n/10; //palveluaika määräytyy ostosten määrän mukaisesti
 			varattu = false; //kaupan hyllyillä ei oli jonoa, joten monta asiakasta pystyy valitsemaan ostoksia saman aikaisesti, eikä ne ole ikinä varattuna.
 			jonotonPalvelupiste.add(jono.poll());//asiakas siirretään jonosta jonottomaan palvelupisteeseen.
 			break;
 			
 		case COFFEE:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". saapui Kahvilaan");
+			System.out.println("Asiakas " + jono.peek().getId() + ". saapui Kahvilaan");
 			palveluaika = palveluaika/2;
 			jono.peek().setKahvi(rand.nextBoolean());//50% jää kahvilaan juomaan kahvin, 50% poistuu kahvin kanssa
 			break;
 			
 		case COFFEE_TABLE:
-			Trace.out(Trace.Level.INFO, "Asiakas " + jono.peek().getId() + ". päätti jäädä juomaan kahviaan kahvilaan.");
+			System.out.println("Asiakas " + jono.peek().getId() + ". päätti jäädä juomaan kahviaan kahvilaan.");
 			palveluaika = palveluaika * 1.5;//kahvin juonti aika on 1/2 palveluajasta.
 			varattu = false; //Kahvilan pöydissä ei ole jonoa, monta asiakasta pystyy juomaan kahvia saman aikaisesti, joten pöydät eivät ole ikinä varattu.
 			jonotonPalvelupiste.add(jono.poll());//asiakas siirretään jonosta jonottomaan palvelupisteeseen.
@@ -103,14 +100,14 @@ public class Palvelupiste {
 	}
 
 	
-	public boolean onVarattu(){
+	public synchronized boolean onVarattu(){
 		return varattu;
 	}
 	
 	/*
 	 * returns an array of cutsomers who are in que for a service point. If no one is in que it returns an empty array.
 	 */
-	public Asiakas[] getJono(){
+	public synchronized Asiakas[] getJono(){
 		if(this.palvelupisteenTyyppi == PalveluTyyppi.SHOP || this.palvelupisteenTyyppi == PalveluTyyppi.COFFEE_TABLE) {
 			Asiakas[] arr = this.jono.toArray(new Asiakas[this.jono.size()]);
 			return arr;
@@ -126,7 +123,7 @@ public class Palvelupiste {
 	/*
 	 * returns an array of customers who are being serviced. If no one is being serviced it returns an empty array.
 	 */
-	public Asiakas[] getPalvellaan(){
+	public synchronized Asiakas[] getPalvellaan(){
 		if(this.palvelupisteenTyyppi == PalveluTyyppi.SHOP || this.palvelupisteenTyyppi == PalveluTyyppi.COFFEE_TABLE) {
 			return this.jonotonPalvelupiste.toArray(new Asiakas[this.jonotonPalvelupiste.size()]);
 		}else if(this.jono.size() > 0) {

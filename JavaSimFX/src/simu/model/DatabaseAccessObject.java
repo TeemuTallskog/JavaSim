@@ -65,5 +65,24 @@ public class DatabaseAccessObject implements IDatabaseAccessObject {
 			System.exit(-1);
 		}
 	}
+	
+	/**
+	 * Used to wipe the database
+	 */
+	@Override
+	public void truncateTables() {
+		buildSF();
+		Session session = sf.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.createSQLQuery("truncate table Tulos").executeUpdate();
+			transaction.commit();
+			sf.close();
+		}catch(Exception e) {
+			if(transaction != null)transaction.rollback();
+			System.out.println("Emptying database did not succeed");
+		}
+	}
 
 }

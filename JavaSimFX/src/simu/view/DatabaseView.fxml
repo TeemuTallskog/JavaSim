@@ -5,13 +5,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simu.view.DatabaseGUIController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simu.view.DatabaseGUIController">
    <children>
       <TableView fx:id="table" layoutX="65.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="52.0" text="Id" />
           <TableColumn fx:id="distribution" prefWidth="85.0" text="Distribution" />
-            <TableColumn fx:id="runTime" prefWidth="70.0" text="Run time" />
+            <TableColumn fx:id="firstArg" prefWidth="46.0" text="Arg1" />
+            <TableColumn fx:id="secondArg" prefWidth="48.0" text="Arg2" />
+            <TableColumn fx:id="runTime" prefWidth="126.0" text="Run time" />
             <TableColumn fx:id="customersServed" prefWidth="105.0" text="Customers served" />
             <TableColumn fx:id="avrgPasstrough" prefWidth="74.0" text="Arvg. passtrough" />
             <TableColumn fx:id="avrgServiceTime" prefWidth="90.0" text="Avrg. service time" />

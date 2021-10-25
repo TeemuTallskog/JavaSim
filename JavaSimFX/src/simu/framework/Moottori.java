@@ -12,8 +12,8 @@ public abstract class Moottori extends Thread implements IMoottori {
 	
 	private Kello kello;
 	
-	protected Tapahtumalista tapahtumalista;
-	protected Palvelupiste[] palvelupisteet;
+	protected volatile Tapahtumalista tapahtumalista;
+	protected volatile Palvelupiste[] palvelupisteet;
 	
 	protected IKontrolleri kontrolleri;
 	
@@ -46,30 +46,29 @@ public abstract class Moottori extends Thread implements IMoottori {
 		return viive;
 	}
 	
+	
+	
 	@Override
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimmäinen tapahtuma
 		while (simuloidaan()){
 			viive(); // UUSI
-			Trace.out(Trace.Level.INFO, "\nA-vaihe: kello on " + nykyaika());
+			System.out.println("\nA-vaihe:");
 			kello.setAika(nykyaika());
-			Trace.out(Trace.Level.INFO, "\nB-vaihe:" );
+			System.out.println("\nB-vaihe:");
 			suoritaBTapahtumat();
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
+			System.out.println("\nC-vaihe:");
+			yritaCTapahtumat();
+			System.out.println(kello.getAika());
+			Platform.runLater(() ->{
 					kontrolleri.updateView(palvelupisteet);
 					kontrolleri.updateResults(resultSet());
 					kontrolleri.updateTime(kello.getAika());
-				}
-			});
-			Trace.out(Trace.Level.INFO, "\nC-vaihe:" );
-			yritaCTapahtumat();
+				});
 		}
 		tulokset();
 		
 	}
-	
 	
 	
 	

@@ -9,4 +9,6 @@ public interface IDatabaseAccessObject {
 	public boolean vieTulos(Tulos tulos);
 	
 	public int getHighID();
+	
+	public void truncateTables();
 }

@@ -3,7 +3,6 @@ package simu.model;
 import java.util.Random;
 
 import simu.framework.Kello;
-import simu.framework.Trace;
 
 
 // TODO:
@@ -24,7 +23,7 @@ public class Asiakas {
 	    id = i++;
 	    
 		saapumisaika = Kello.getInstance().getAika();
-		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+		System.out.println("Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 		int i = new Random().nextInt(400); //antaa arvon 0-399
 		if(i<100) {
 			if(i<25) { //25% menee kahvilaan ja lihatiskille
@@ -66,11 +65,11 @@ public class Asiakas {
 	
 	
 	public void raportti(){
-		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
-		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
-		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
-		Trace.out(Trace.Level.INFO, "Asiakas " + id + " osti " + this.ostoskori + " tuotetta"); 
+		System.out.println( "\nAsiakas "+id+ " valmis! ");
+		System.out.println("Asiakas "+id+ " saapui: " +saapumisaika);
+		System.out.println("Asiakas "+id+ " poistui: " +poistumisaika);
+		System.out.println("Asiakas "+id+ " viipyi: " +(poistumisaika-saapumisaika));
+		System.out.println("Asiakas " + id + " osti " + this.ostoskori + " tuotetta"); 
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);

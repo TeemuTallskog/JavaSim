@@ -12,16 +12,7 @@
           <Menu mnemonicParsing="false" text="Database">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#openDatabaseView" text="View database" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#emptyDB" text="Empty database" />
             </items>
           </Menu>
         </menus>

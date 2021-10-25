@@ -174,6 +174,9 @@ public class OmaMoottori extends Moottori {
 		IDatabaseAccessObject dbao = new DatabaseAccessObject();
 		tulos.setKeskPalvAika(palvelupisteet[1].getAvrgPalvAika());
 		tulos.setAllCustomers(asiakas);
+		int[] args = kontrolleri.getUI().getDistributionArguments();
+		tulos.setFirstArg(args[0]);
+		tulos.setSecondArg(args[1]);
 		dbao.vieTulos(tulos);
 	}
 	
@@ -186,18 +189,19 @@ public class OmaMoottori extends Moottori {
 	}
 	
 	public void generateSaapumisprosessi() {
+		int[] args = kontrolleri.getUI().getDistributionArguments();
 		switch(kontrolleri.getUI().getDistribution()) {
 		case NegExp:
-			saapumisprosessi = new Saapumisprosessi(new Negexp(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			saapumisprosessi = new Saapumisprosessi(new Negexp(args[0], args[1]), tapahtumalista, TapahtumanTyyppi.ARR1);
 			break;
 		case Normal:
-			saapumisprosessi = new Saapumisprosessi(new Normal(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			saapumisprosessi = new Saapumisprosessi(new Normal(args[0], args[1]), tapahtumalista, TapahtumanTyyppi.ARR1);
 			break;
 		case Gamma:
-			saapumisprosessi = new Saapumisprosessi(new Gamma(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			saapumisprosessi = new Saapumisprosessi(new Gamma(args[0], args[1]), tapahtumalista, TapahtumanTyyppi.ARR1);
 			break;
 		case Logistic:
-			saapumisprosessi = new Saapumisprosessi(new Logistic(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+			saapumisprosessi = new Saapumisprosessi(new Logistic(args[0], args[1]), tapahtumalista, TapahtumanTyyppi.ARR1);
 			break;
 		}
 	}
