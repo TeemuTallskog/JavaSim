@@ -20,7 +20,9 @@ public class RootLayoutController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
+	/**
+	 * tyhjentää tietokannan, jos käyttäjä vahvistaa.
+	 */
 	@FXML
 	private void emptyDB() {
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to empty your database?", ButtonType.YES,ButtonType.CANCEL);

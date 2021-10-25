@@ -88,6 +88,9 @@ public class DatabaseGUIController {
 		this.ui = ui;
 	}
 	
+	/**
+	 * ottaa valitun rivin distribution tyypin ja argumentit ja vie ne main ikkunaan.
+	 */
 	private void pickDistribution() {
 		Tulos t = table.getSelectionModel().getSelectedItem();
 		if(t == null) return;
@@ -104,12 +107,19 @@ public class DatabaseGUIController {
 		returnToMain();
 	}
 	
+	/**
+	 * asettaa ikkunaan tietokannasta saadut tulokset.
+	 * @param tulokset
+	 */
 	private void setItems(Tulos[] tulokset) {
 		for(Tulos t: tulokset) {
 			table.getItems().add(t);
 		}
 	}
 	
+	/**
+	 * sulkee ikkunan.
+	 */
 	private void returnToMain() {
 		Stage stage = (Stage)returnBtn.getScene().getWindow();
 		stage.close();

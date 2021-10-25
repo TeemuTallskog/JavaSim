@@ -18,6 +18,7 @@ public class Tulos {
 	private double keskLapimenoAika;
 	@Column(name="allcustomers")
 	private int allCustomers;
+	//generoi tuloksen id:n automaattisesti
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")

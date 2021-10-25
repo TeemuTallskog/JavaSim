@@ -2,13 +2,22 @@ package simu.model;
 
 public interface IDatabaseAccessObject {
 
+	/**
+	 * Palauttaa tietokannasta listan tuloksista.
+	 * @return
+	 */
 	public Tulos[] haeTulokset();
 	
-	public Tulos haeTulos(int id);
-	
+	/**
+	 * vie listaan tuloksen
+	 * @param tulos
+	 * @return true false
+	 */
 	public boolean vieTulos(Tulos tulos);
 	
-	public int getHighID();
-	
-	public void truncateTables();
+	/**
+	 * tyhjentää tietokannan
+	 * @return true/false
+	 */
+	public boolean truncateTables();
 }

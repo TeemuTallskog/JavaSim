@@ -13,6 +13,9 @@ public class Saapumisprosessi {
 		this.tyyppi = tyyppi;
 	}
 
+	/**
+	 * generoi seuraavan tapahtuman tapahtumalistaan.
+	 */
 	public void generoiSeuraava(){
 		Tapahtuma t = new Tapahtuma(tyyppi, Kello.getInstance().getAika()+generaattori.sample());
 		tapahtumalista.lisaa(t);

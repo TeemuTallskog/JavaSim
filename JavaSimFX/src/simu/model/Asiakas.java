@@ -19,6 +19,9 @@ public class Asiakas {
 
 	private boolean liha = false; //meneekö lihatiskille
 	
+	/**
+	 * Asiakkaalle arvotaan mihin palvelupisteeseen se menee.
+	 */
 	public Asiakas(){
 	    id = i++;
 	    
@@ -39,31 +42,57 @@ public class Asiakas {
 		
 	}
 	
+	/**
+	 * Palauttaa kokonaisen oleskeluajan.
+	 * @return time
+	 */
 	public static double getTimeSum() {
 		return sum;
 	}
 
+	/**
+	 * palauttaa poistumisajan
+	 * @return time
+	 */
 	public double getPoistumisaika() {
 		return poistumisaika;
 	}
 
+	/**
+	 * Asettaa poistumisajan
+	 * @param poistumisaika
+	 */
 	public void setPoistumisaika(double poistumisaika) {
 		this.poistumisaika = poistumisaika;
 	}
 
+	/**
+	 * palauttaa saapumisajan
+	 * @return
+	 */
 	public double getSaapumisaika() {
 		return saapumisaika;
 	}
 
+	/**
+	 * asettaa saapumisajan.
+	 * @param saapumisaika
+	 */
 	public void setSaapumisaika(double saapumisaika) {
 		this.saapumisaika = saapumisaika;
 	}
 	
+	/**
+	 * palauttaa asiakkaan id:n
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 	
-	
+	/**
+	 * tulostaa raportin asiakkaasta.
+	 */
 	public void raportti(){
 		System.out.println( "\nAsiakas "+id+ " valmis! ");
 		System.out.println("Asiakas "+id+ " saapui: " +saapumisaika);
@@ -75,26 +104,48 @@ public class Asiakas {
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
 	}
 	
+	/**
+	 * palauttaa ostoksien määrän asiakkaan ostoskorissa.
+	 * @return
+	 */
 	public int getOstoskori() {
 		return this.ostoskori;
 	}
 	
+	/**
+	 * lisää ostoskoriin ostoksia.
+	 * @param määrä
+	 */
 	public void lisaaOstos(int amount) {
 		this.ostoskori += amount;
 	}
 	
+	/**
+	 * Palauttaa true tai false jos asiakkaalle on arvottu kahvilassa käynti.
+	 * @return true/false
+	 */
 	public boolean isKahvi() {
 		return kahvi;
 	}
 
+	/**
+	 * Asiakkaalle voidaan asettaa tarve käydä kahvilla.
+	 * @param kahvi
+	 */
 	public void setKahvi(boolean kahvi) {
 		this.kahvi = kahvi;
 	}
 
+	/**
+	 * Palauttaa true tai false jos asiakkaalle on arvottu lihatiskillä käynti.
+	 * @return
+	 */
 	public boolean isLiha() {
 		return liha;
 	}
-	
+	/**
+	 * asiakas ID (Ostoskori)
+	 */
 	@Override
 	public String toString() {
 		return "Asiakas " + this.id + " (" + this.ostoskori + ")";

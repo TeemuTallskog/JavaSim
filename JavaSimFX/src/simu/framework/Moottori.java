@@ -31,23 +31,34 @@ public abstract class Moottori extends Thread implements IMoottori {
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setSimulointiaika(double aika) {
 		simulointiaika = aika;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override // UUSI
 	public void setViive(long viive) {
 		this.viive = viive;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override // UUSI 
 	public long getViive() {
 		return viive;
 	}
 	
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void run(){ // Entinen aja()
 		alustukset(); // luodaan mm. ensimmäinen tapahtuma
@@ -71,13 +82,18 @@ public abstract class Moottori extends Thread implements IMoottori {
 	}
 	
 	
-	
+	/**
+	 * Suorittaa simuloinnin B vaiheen tapahtumat.
+	 */
 	private void suoritaBTapahtumat(){
 		while (tapahtumalista.getSeuraavanAika() == kello.getAika()){
 			suoritaTapahtuma(tapahtumalista.poista());
 		}
 	}
 
+	/**
+	 * Suorittaa simuloinnin c vaiheen tapahtumat.
+	 */
 	private void yritaCTapahtumat(){
 		for (Palvelupiste p: palvelupisteet){
 			if (!p.onVarattu() && p.onJonossa()){
@@ -86,15 +102,25 @@ public abstract class Moottori extends Thread implements IMoottori {
 		}
 	}
 
-	
+	/**
+	 * palauttaa seuraavan tapahtuman ajan.
+	 * @return seuraavan tapahtuman aika.
+	 */
 	private double nykyaika(){
 		return tapahtumalista.getSeuraavanAika();
 	}
 	
+	/**
+	 * true niin kauan kun simulointi on käynnissä.
+	 * @return true/false
+	 */
 	private boolean simuloidaan(){
 		return kello.getAika() < simulointiaika;
 	}
 	
+	/**
+	 * pysäyttää säikeen viiveen ajaksi.
+	 */
 	private void viive() { // UUSI
 		try {
 			sleep(viive);
@@ -103,7 +129,9 @@ public abstract class Moottori extends Thread implements IMoottori {
 		}
 	}
 			
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getSimulointiAika() {
 		return this.simulointiaika;

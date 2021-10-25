@@ -19,6 +19,9 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 
 	// Moottorin ohjausta:
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void kaynnistaSimulointi() {
 		moottori = new OmaMoottori(this); // luodaan uusi moottorisäie jokaista simulointia varten
@@ -29,11 +32,17 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 		// ((Thread)moottori).run(); // Ei missään tapauksessa näin. Miksi?
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void hidasta() { // hidastetaan moottorisäiettä
 		moottori.setViive((long) (moottori.getViive() + 50));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void nopeuta() { // nopeutetaan moottorisäiettä
 		moottori.setViive((long) (moottori.getViive() - 50));
@@ -43,20 +52,11 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 	// Koska FX-ui:n päivitykset tulevat moottorisäikeestä, ne pitää ohjata
 	// JavaFX-säikeeseen:
 
-	@Override
-	public void naytaLoppuaika(double aika) {
-		Platform.runLater(() -> ui.setLoppuaika(aika));
-	}
 
-	@Override
-	public void visualisoiAsiakas() {
-		Platform.runLater(new Runnable() {
-			public void run() {
-				ui.getVisualisointi().uusiAsiakas();
-			}
-		});
-	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateView(Palvelupiste[] pp) {
 		for(int i = 0; i < pp.length; i++) {
@@ -88,17 +88,26 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 	
 	
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateResults(double[] results) {
 		ui.setKeskLapiMeno(results[1]);
 		ui.setKeskPalvAika(results[0]);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ISimulaattorinUI getUI() {
 		return this.ui;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void readyCustomer(Asiakas a) {
 		Platform.runLater(new Runnable() {
@@ -108,11 +117,17 @@ public class Kontrolleri implements IKontrolleri { // UUSI
 		});
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void newCustomer() {
 		this.ui.newCustomer();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateTime(double t) {
 		ui.updateTime(t);

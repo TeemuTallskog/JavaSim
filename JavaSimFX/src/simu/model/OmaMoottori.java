@@ -53,6 +53,9 @@ public class OmaMoottori extends Moottori {
 		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
 
+	/**
+	 * suorittaa tapahtuman sen tapahtuma tyypin perusteella
+	 */
 	@Override
 	protected void suoritaTapahtuma(Tapahtuma t) { // B-vaiheen tapahtumat
 		
@@ -124,38 +127,73 @@ public class OmaMoottori extends Moottori {
 		}
 	}
 
+	/**
+	 * palauttaa asiakkaiden määrän.
+	 * @return
+	 */
 	public static int getAsiakas() {
 		return asiakas;
 	}
 
+	/**
+	 * palauttaa kahvilassa käydeiden asiakkaiden määrän.
+	 * @return
+	 */
 	public static int getKahvilaAsiakas() {
 		return kahvilaAsiakas;
 	}
 
+	/**
+	 * palauttaa kahivilassa kahviajuoneiden asiakkaiden määrän.
+	 * @return
+	 */
 	public static int getKahvilaPoytaAsiakas() {
 		return kahvilaPoytaAsiakas;
 	}
 
+	/**
+	 * palauttaa lihatiskillä käydeiden asiakkaiden määrän.
+	 * @return
+	 */
 	public static int getLihatiskiAsiakas() {
 		return lihatiskiAsiakas;
 	}
 
+	/**
+	 * palauttaa kassalla käydeiden asiakkaiden määrän.
+	 * @return
+	 */
 	public static int getKassaAsiakas() {
 		return kassaAsiakas;
 	}
 
+	/**
+	 * palauttaa itsepalvelu kassalla käydeiden asiakkaiden määrän.
+	 * @return int
+	 */
 	public static int getIpKassaAsiakas() {
 		return ipKassaAsiakas;
 	}
 	
+	/**
+	 * palauttaa valmiiden asiakkaiden määrän
+	 * @return
+	 */
 	public int getCompletedCustomers() {
 		return ipKassaAsiakas + kassaAsiakas;
 	}
 	
+	/**
+	 * palauttaa palvelupisteet
+	 * @return palvelupiste lista
+	 */
 	public Palvelupiste[] getPalvPisteet() {
 		return this.palvelupisteet;
 	}
 	
+	/**
+	 * vie tulokset simuloinnista tietokantaan ja tulostaa ne konsoliin. 
+	 */
 	@Override
 	protected void tulokset() {
 		System.out.println("\n// Simulointi päättyi kello " + Kello.getInstance().getAika() + " //");
@@ -180,6 +218,9 @@ public class OmaMoottori extends Moottori {
 		dbao.vieTulos(tulos);
 	}
 	
+	/**
+	 * {@inheritDoc} 
+	 */
 	@Override
 	protected double[] resultSet() {
 		double[] results = new double[2];
@@ -188,6 +229,9 @@ public class OmaMoottori extends Moottori {
 		return results;
 	}
 	
+	/**
+	 * valitsee saapumisprosessin käyttäjän valintojen perusteilla.
+	 */
 	public void generateSaapumisprosessi() {
 		int[] args = kontrolleri.getUI().getDistributionArguments();
 		switch(kontrolleri.getUI().getDistribution()) {

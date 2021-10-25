@@ -11,7 +11,10 @@ import org.hibernate.cfg.Configuration;
 public class DatabaseAccessObject implements IDatabaseAccessObject {
 	
 	private SessionFactory sf = null;
-
+	
+	/**
+	 * {@inheritDoc} 
+	 */
 	@Override
 	public Tulos[] haeTulokset() {
 		buildSF();
@@ -27,12 +30,10 @@ public class DatabaseAccessObject implements IDatabaseAccessObject {
 		}
 	}
 
-	@Override
-	public Tulos haeTulos(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	/**
+	 * {@inheritDoc} 
+	 */
 	@Override
 	public boolean vieTulos(Tulos tulos) {
 		buildSF();
@@ -50,12 +51,9 @@ public class DatabaseAccessObject implements IDatabaseAccessObject {
 		}	
 	}
 
-	@Override
-	public int getHighID() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
+	/**
+	 * {@inheritDoc} 
+	 */
 	private void buildSF() {
 		try {
 			sf = new Configuration().configure().buildSessionFactory();
@@ -67,21 +65,25 @@ public class DatabaseAccessObject implements IDatabaseAccessObject {
 	}
 	
 	/**
-	 * Used to wipe the database
+	 * {@inheritDoc} 
 	 */
 	@Override
-	public void truncateTables() {
+	public boolean truncateTables() {
 		buildSF();
 		Session session = sf.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
 			session.createSQLQuery("truncate table Tulos").executeUpdate();
+			session.createSQLQuery("DELETE FROM hibernate_sequence").executeUpdate();
+			session.createSQLQuery("INSERT INTO hibernate_sequence (next_val) VALUES (0)").executeUpdate();
 			transaction.commit();
 			sf.close();
+			return true;
 		}catch(Exception e) {
 			if(transaction != null)transaction.rollback();
 			System.out.println("Emptying database did not succeed");
+			return false;
 		}
 	}
 

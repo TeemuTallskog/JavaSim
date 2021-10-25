@@ -84,11 +84,17 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		distributionBox.setValue(DistributionTyyppi.Normal);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public DistributionTyyppi getDistribution() {
 		return distributionBox.getValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getAika() {
 		try {
@@ -99,6 +105,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		return 0;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public long getViive() {
 		try {
@@ -111,17 +120,13 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		return 0;
 	}
 
-	@Override
-	public void setLoppuaika(double aika) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public IVisualisointi getVisualisointi() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/**
+	 * {@inheritDoc}
+	 */
 	
+	/**
+	 * Nostaa simuloinnin viivettä +50
+	 */
 	@FXML
 	private void hidasta() {
 		try {
@@ -134,7 +139,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * vähentää simuloinnin viivettä -50 jos viive on yli 51
+	 */
 	@FXML
 	private void nopeuta() {
 		try {
@@ -149,6 +156,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		}
 	}
 	
+	/**
+	 * käynnistää simuloinnin
+	 */
 	@FXML
 	private void startSimu() {
 		Alert alert = new Alert(AlertType.ERROR);
@@ -185,82 +195,124 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 	
 
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKahvilaJono(Asiakas[] list) {
 		kahvilaJono.getItems().clear();
 		kahvilaJono.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKahvila(Asiakas[] list) {
 		kahvilaTiski.getItems().clear();
 		kahvilaTiski.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setHyllyt(Asiakas[] list) {
 		kaupanHyllyt.getItems().clear();
 		kaupanHyllyt.getItems().addAll(sliceArray(list));	
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setLihaTiski(Asiakas[] list) {
 		lihaTiski.getItems().clear();
 		lihaTiski.getItems().addAll(sliceArray(list));	
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setLihaJono(Asiakas[] list) {
 		lihaJono.getItems().clear();
 		lihaJono.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setIpKassa(Asiakas[] list) {
 		ipKassa.getItems().clear();
 		ipKassa.getItems().addAll(sliceArray(list));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setIpKassaJono(Asiakas[] list) {
 		ipJono.getItems().clear();
 		ipJono.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKassa(Asiakas[] list) {
 		kassaTiski.getItems().clear();
 		kassaTiski.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKassaJono(Asiakas[] list) {
 		kassaJono.getItems().clear();
 		kassaJono.getItems().addAll(sliceArray(list));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setDistribution(DistributionTyyppi distribution) {
 		distributionBox.setValue(distribution);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ISimulaattorinUI getReference() {
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKeskLapiMeno(double time) {
 		keskLapimeno.getItems().clear();
 		keskLapimeno.getItems().add(String.format("%.2f", time));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setKeskPalvAika(double time) {
 		keskPalveluAika.getItems().clear();
 		keskPalveluAika.getItems().add(String.format("%.2f", time)); 	
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void addReadyCustomer(Asiakas a) {
 		completedCount++;
@@ -269,11 +321,16 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		readyCustomersLabel.setText("Valmiit asiakkaat (" + completedCount + ")");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateTime(double t) {
 		sysTime.setText("" + String.format("%.2f", t));
 	}
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void newCustomer() {
 		try {
@@ -284,7 +341,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int[] getDistributionArguments() {
 		int[] args = new int[2];
@@ -297,7 +356,11 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		}
 		return args;
 	}
-	
+	/**
+	 * jos listassa on yli 20 asiakasta se poistaa vanhimmat listasta ja jättää 20 uusinta.
+	 * @param asiakas lista
+	 * @return palauttaa listan, jonka maksimi pituus on 20
+	 */
 	private Asiakas[] sliceArray(Asiakas[] list) {
 		if(list.length < 21) return list;
 		Asiakas[] arr = new Asiakas[20];
@@ -305,6 +368,9 @@ public class SimulaatioOverviewController implements ISimulaattorinUI {
 		return arr;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setDistributionArguments(int[] args) {
 		firstArgument.setText("" + args[0]);
